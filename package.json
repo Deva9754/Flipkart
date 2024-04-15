@@ -1,0 +1,28 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "description": " Namaste React app",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://githb.com/Deva9754/NamasteReact.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "tailwindcss",
+    "typescript"
+  ],
+  "author": "Deva9754",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
