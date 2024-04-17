@@ -1,8 +1,6 @@
-#root {
-  background-color: #639;
-}
-
-#headdd {
-  color: #faebd7;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 /*# sourceMappingURL=index.9e4c6fd2.css.map */

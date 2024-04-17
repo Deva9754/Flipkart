@@ -3,39 +3,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-.Header{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    align-items: center;
-    border-bottom: 2px solid grey;
-}
-.logo-image{
-    width: 40%;
-    border-radius: 24px;
-
-}.logo{
-    width: 200px;
-}
-.nav-items-list{
-    display: flex;
-    list-style-type: none;  
-}
-.nav-items-list li{
-    padding-left: 10px;
-    margin: 10px;
-    cursor: pointer;
-}
-.Search{
-    display: flex;
-}
-
-.search-bar{
-
-    border: navajowhite;
-    border-radius: 12px;
-    height: 30px;
-                width: 300px;
-               text-align: center;
-  
-}

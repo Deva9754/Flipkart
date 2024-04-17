@@ -1,0 +1,55 @@
+.Header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    /* border-bottom: 2px solid grey; */
+    background-color:#2874f0;
+    height: 60px;
+}
+.logo-image{
+    width: 25%;
+    border-radius: 8px;
+
+}.logo{
+    width: 180px;
+}
+.nav-items-Bar{
+    display: flex;
+    list-style-type: none;  
+}
+.nav-items-Bar li{
+    padding-left: 20px;
+    margin: 10px;
+    cursor:pointer;
+    color: white;
+    font-size: 18px;
+  text-shadow: 8px 8px 8px #aaa;
+}
+
+.Search{
+    display: flex;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    width: 33%;
+   
+
+
+}
+
+.search-bar{
+
+    border: navajowhite;
+    border-radius: 12px;
+    height: 30px;
+    width: 300px;
+    padding-left: 25px;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-size: 20px; 
+}
+::placeholder {
+    color: grey;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    opacity: 1; /* Firefox */
+    font-weight: 500;
+  }
