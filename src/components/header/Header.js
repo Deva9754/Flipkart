@@ -1,11 +1,13 @@
 import "./Header.css";
+import { Button } from "@mui/base/Button";
+
 const Header = () => {
   return (
     <div className="Header">
       <div className="logo">
         <img
           className="logo-image"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt_-ygVCi7PUzr2fNKPwD3eEg-0W_AQALDhDmCLvecDw&s"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR3rzJeWfV0oko1aJrSLgi7v1mdxoRvK6KaEG-_Twr&s"
           alt="Logo"
         />
       </div>
@@ -13,20 +15,23 @@ const Header = () => {
         <input
           className="search-bar"
           type="text"
-          placeholder="Search your Products"
+          placeholder="Search for Products,brands and more"
         />
       </div>
       <div className="nav-items">
         <ul className="nav-items-Bar">
-          <li>
-            <i class="fa-solid fa-right-to-bracket"></i>Login
-          </li>
-          <li>
-            <i class="fa-solid fa-cart-shopping"></i>Cart
-          </li>
-          <li>
-            <i class="fa-solid fa-store"></i>Become a Seller
-          </li>
+          <Button className="btn">
+            {" "}
+            <i className="fa-solid fa-right-to-bracket"></i> Login
+          </Button>
+
+          <Button className="btn">
+            <i className="fa-solid fa-cart-shopping"></i>Cart
+          </Button>
+
+          <Button className="btn">
+            <i className="fa-solid fa-store"></i>Become a Seller
+          </Button>
         </ul>
       </div>
     </div>

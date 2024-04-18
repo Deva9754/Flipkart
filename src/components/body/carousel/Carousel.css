@@ -9,13 +9,11 @@
   }
   
   .slick-slide img {
-    margin: auto;
-    width: 30%;
-    height: 30%;
-    padding: 10px;
-    border-radius: 4px;
-  }
-  .imgslider{
-     background-color: #e1f0f8;
+    width: 100%;
+    max-height: 250px;
   }
   
+  
+  .slick-dots{
+    width: 100%;
+  }

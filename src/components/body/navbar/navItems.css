@@ -1,0 +1,17 @@
+.nav-items-list li{
+    padding-left: 10px;
+    margin: 10px;
+    cursor:pointer;
+    color: black;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  text-shadow: 8px 8px 8px #aaa;
+  
+}
+
+.nav-items-list{
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  list-style-type: none;
+}
