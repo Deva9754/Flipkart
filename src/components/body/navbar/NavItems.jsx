@@ -11,7 +11,7 @@ const NavItems = () => {
         </li>
         <li>
           <img src="https://rukminim2.flixcart.com/flap/80/80/image/69c6589653afdb9a.png?q=100" />
-          Televison
+          Television
         </li>
         <li>
           <img src="https://rukminim2.flixcart.com/fk-p-flap/80/80/image/0d75b34f7d8fbcb3.png?q=100" />

@@ -41,3 +41,18 @@
      - Address
      - Contact
      - Help and support
+
+
+   *Two types of Export
+
+     - Default/Export/Import
+
+         export default component;
+         import component from "path;
+
+     - Named Export/Import
+
+         export const component;
+         import {component} from "path;
+
+   # React Hooks       

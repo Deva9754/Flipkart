@@ -1,0 +1,10 @@
+.Item-box{
+    border: 1px solid black;
+    width: 216px;
+    height: 268px;
+}
+.product-image{
+    width: 194px;
+    height: 186px;
+    padding: 10px;
+}
