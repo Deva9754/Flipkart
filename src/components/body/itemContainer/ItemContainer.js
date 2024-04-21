@@ -1,20 +1,30 @@
+import { useEffect, useState } from "react";
 import "./ItemContainer.css";
 
 const ItemContainer = () => {
+  const [listOfProduct, setListOfProduct] = useState();
+  const response = async () => {
+    const data = await fetch("https://fakestoreapi.com/products");
+    const result = await data.json();
+    setListOfProduct(result);
+    console.log(result);
+  };
+
+  useEffect(() => {
+    response();
+  }, []);
+
   return (
-    <div>
-      ItemContainer
-      <div className="Item-box">
-        <img
-          className="product-image"
-          src="https://www.titan.co.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dw34d84041/images/Titan/Catalog/1698KM02_1.jpg?sw=800&sh=800"
-          alt="product-img"
-        />
-        <br></br>
-        <span>Product-name</span>
-        <br></br>
-        <span>Product-price</span>
-      </div>
+    <div className="item-box">
+      {listOfProduct?.map((item) => (
+        <div className="Item-box">
+          <img className="product-image" src={item.image} />
+          <br></br>
+          <div className="Title">{item?.title}</div>
+          <br></br>
+          <div className="Price">From ₹{item?.price}</div>
+        </div>
+      ))}
     </div>
   );
 };

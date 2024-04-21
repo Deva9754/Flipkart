@@ -1,10 +1,26 @@
 .Item-box{
-    border: 1px solid black;
+    border: 3px solid whitesmoke;
     width: 216px;
     height: 268px;
+    margin: 10px;
+    box-shadow: 10px 10px 5px 12px whitesmoke;
+ 
 }
 .product-image{
     width: 194px;
     height: 186px;
     padding: 10px;
+}
+.item-box{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+.Price{
+    font-weight: 900;   
+}
+.Title{
+    font-style: inherit;
+    color: rgb(90, 89, 89);
 }

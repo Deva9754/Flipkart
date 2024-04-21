@@ -5,20 +5,20 @@ import images from "../../utils/Image";
 import NavItems from "./navbar/NavItems";
 import { Container, ListItem } from "@mui/material";
 import ItemContainer from "./itemContainer/ItemContainer";
-// import ShimmerContainer from "./shimmer/ShimmerContainer";
+import ShimmerContainer from "./shimmer/ShimmerContainer";
 import ListItem from "./ListItem/ListItem";
 
 const Body = () => {
   return (
     <div className="Body">
-      {/* <NavItems />
+      <NavItems />
       <ImageSlider images={images} />
       <div>
         Best of Products
         <ItemContainer />
-        {/* <ShimmerContainer /> 
-      </div> */}
-      <ListItem />
+        {/* <ShimmerContainer /> */}
+      </div>
+      {/* <ListItem /> */}
     </div>
   );
 };
