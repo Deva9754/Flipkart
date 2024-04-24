@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
 
 const Header = () => {
+  const [searchText, setSearchText] = useState("");
   return (
     <div className="Header">
       <div className="logo">
@@ -16,7 +18,19 @@ const Header = () => {
           className="search-bar"
           type="text"
           placeholder="Search for Products,brands and more"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
         />
+        <button
+          type="submit"
+          onClick={() => {
+            console.log(searchText);
+          }}
+        >
+          Search
+        </button>
       </div>
       <div className="nav-items">
         <ul className="nav-items-Bar">
