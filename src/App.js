@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/header/Header";
+
 import Body from "./components/body/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Login from "../src/components/header/login/Login";
 import Error from "./components/error/Error";
 import About from "./components/header/about/About";
+import Header from "./components/header/Header.js";
+import ProductCard from "./components/body/Product-card/ProductCard.js";
 
 const AppLayout = () => {
   return (
@@ -32,6 +34,10 @@ const appRoute = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/product-card/:proId",
+        element: <ProductCard />,
       },
     ],
     errorElement: <Error />,

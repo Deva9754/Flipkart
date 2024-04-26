@@ -4,6 +4,7 @@ import { Button } from "@mui/base/Button";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
+  const [BtnReact, SetBtnReact] = useState("Login");
   return (
     <div className="Header">
       <div className="logo">
@@ -23,20 +24,27 @@ const Header = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button
+        {/* <button
           type="submit"
           onClick={() => {
             console.log(searchText);
           }}
         >
           Search
-        </button>
+        </button> */}
       </div>
       <div className="nav-items">
         <ul className="nav-items-Bar">
-          <Button className="btn">
+          <Button
+            className="btn"
+            onClick={() => {
+              BtnReact == "Login"
+                ? SetBtnReact("Logout")
+                : SetBtnReact("Login");
+            }}
+          >
             {" "}
-            <i className="fa-solid fa-right-to-bracket"></i> Login
+            <i className="fa-solid fa-right-to-bracket"></i> {BtnReact}
           </Button>
 
           <Button className="btn">
