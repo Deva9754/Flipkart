@@ -24,14 +24,14 @@ const Header = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button
+        {/* <button
           type="submit"
           onClick={() => {
             console.log(searchText);
           }}
         >
           Search
-        </button>
+        </button> */}
       </div>
       <div className="nav-items">
         <ul className="nav-items-Bar">

@@ -17,6 +17,7 @@
 .logo-image{
     width: 65%;
     border-radius: 8px;
+    cursor: pointer;
 
 }.logo{
     width: 180px;
