@@ -8,12 +8,14 @@ import Error from "./components/error/Error";
 import About from "./components/header/about/About";
 import Header from "./components/header/Header.js";
 import ProductCard from "./components/body/Product-card/ProductCard.js";
+import Footer from "./components/footer/Footer.js";
 
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 };
