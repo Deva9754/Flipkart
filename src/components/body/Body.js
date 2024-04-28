@@ -2,23 +2,62 @@ import React from "react";
 import "./Body.css";
 import ImageSlider from "./carousel/ImageSlider";
 import images from "../../utils/Image";
-import NavItems from "./navbar/NavItems";
-import { Container, ListItem } from "@mui/material";
+// import NavItems from "../navbar/NavItems.js";
 import ItemContainer from "./itemContainer/ItemContainer";
-import ShimmerContainer from "./shimmer/ShimmerContainer";
-import ListItem from "./ListItem/ListItem";
-
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 const Body = () => {
+  const [listOfProduct, setListOfProduct] = useState();
+  const [filteredData, setFilteredData] = useState();
+  const [searchText, setSearchText] = useState();
+  const response = async () => {
+    const data = await fetch("https://dummyjson.com/product");
+    const result = await data.json();
+    setListOfProduct(result.products);
+    setFilteredData(result.products);
+    console.log(result);
+  };
+  ``;
+  useEffect(() => {
+    response();
+  }, []);
   return (
     <div className="Body">
-      <NavItems />
+      {/* <NavItems /> */}
       <ImageSlider images={images} />
       <div>
         Best of Products
-        <ItemContainer />
+        <div>
+          <input
+            type="text"
+            placeholder="search "
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            type="submit"
+            onClick={() => {
+              const filteredData = listOfProduct.filter((product) =>
+                product.title.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredData(filteredData);
+            }}
+          >
+            Search
+          </button>
+          <div className="item-box">
+            {filteredData?.length &&
+              filteredData?.map((item) => (
+                <Link key={item?.id} to={"/product-card/" + item?.id}>
+                  <ItemContainer resData={item} />
+                </Link>
+              ))}
+          </div>
+        </div>
         {/* <ShimmerContainer /> */}
       </div>
-      {/* <ListItem /> */}
     </div>
   );
 };

@@ -19,11 +19,12 @@ const ImageSlider = ({ images }) => {
       <div className="tag">{/* <h1>Image Gallery</h1> */}</div>
       <div className="imgslider">
         <Slider {...settings}>
-          {images?.map((item) => (
-            <div key={item.id}>
-              <img src={item.src} alt={item.alt} />
-            </div>
-          ))}
+          {images?.length &&
+            images?.map((item) => (
+              <div key={item.id}>
+                <img src={item.src} alt={item.alt} />
+              </div>
+            ))}
         </Slider>
       </div>
     </>
