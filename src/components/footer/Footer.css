@@ -1,7 +1,9 @@
+
+
 .footer{
     display: flex;
     gap: 12px;
-    background-color: black;
+    background-color: #212121;
     color: white;
     padding: 24px;
     border-bottom: 1px solid grey;
@@ -28,9 +30,10 @@
     background-color: gray;
 }
 .footer-main{
-    background-color: black;
+    background-color: #212121;
     color: white;
     padding: 24px;
+    margin-top: 24px;
     
 }p{
     color: #878787;
@@ -48,6 +51,13 @@ li{
 }li:hover{
     text-decoration: underline;
 }
+span{
+    font-family: inter_semi_bold, fallback-inter_semi_bold, Arial, sans-serif;
+    font-size: 12px;
+    color: #fff;
+    display: block;
+    line-height: 18px; 
+}
 .social{
     color: #878787;
     font-size: 12px;
@@ -56,4 +66,32 @@ li{
 .social-icon{
     display: flex;
     align-items: center;
+}
+.address{
+    font: 8px;
+    font-family: inter_semi_bold, fallback-inter_semi_bold, Arial, sans-serif;
+
+}
+.footer-bottom{
+    display: flex;
+    
+gap: 12px;
+padding: 4px;
+
+}
+.footer-bottom-links{
+    font-family: inter_semi_bold, fallback-inter_semi_bold, Arial, sans-serif;
+    font-size: 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    line-height: 18px;
+    gap: 8px;
+}
+.footer-bottom-links:hover{
+text-decoration: underline;
+}
+.payment-img{
+    width: 392;
+    height: 32;
 }
