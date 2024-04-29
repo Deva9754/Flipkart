@@ -1,5 +1,8 @@
 import "./Footer.css";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import StoreIcon from "@mui/icons-material/Store";
+import PriceCheckIcon from "@mui/icons-material/PriceCheck";
+import RedeemIcon from "@mui/icons-material/Redeem";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 const Footer = () => {
   return (
     <div className="footer-main">
@@ -53,15 +56,13 @@ const Footer = () => {
           <div>
             <p>Mail Us</p>
             <br></br>
-            <span>
+            <span className="address">
               Vaishnavi Summit, Ground Floor, 7th Main, 80 Feet Road, 3rd Block,
               Koramangala Industrial Layout, Bangalore KA IN 560034.
             </span>
             <br></br>
             <span className="social">Social</span>
-            <div className="social-icon">
-              <YouTubeIcon />
-            </div>
+            <div className="social-icon"></div>
           </div>
           <div>
             <p>Register Office Address</p>
@@ -74,7 +75,54 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div>info</div>
+      <div className="footer-bottom">
+        <div className="footer-bottom-links">
+          {" "}
+          <StoreIcon
+            sx={{
+              width: 15,
+              color: "yellow",
+            }}
+          />{" "}
+          Become a Seller
+        </div>
+        <div className="footer-bottom-links">
+          {" "}
+          <PriceCheckIcon
+            sx={{
+              width: 15,
+              color: "yellow",
+            }}
+          />{" "}
+          Advertise
+        </div>
+        <div className="footer-bottom-links">
+          <RedeemIcon
+            sx={{
+              width: 15,
+              color: "yellow",
+            }}
+          />{" "}
+          Gift Card
+        </div>
+        <div className="footer-bottom-links">
+          <HelpOutlineIcon
+            sx={{
+              width: 15,
+              color: "yellow",
+            }}
+          />{" "}
+          Help Center
+        </div>
+        <div className="footer-bottom-links"> © 2007-2024 Flipkart.com</div>
+        {/* <div>
+          <img
+            src="https://as1.ftcdn.net/v2/jpg/04/07/44/62/1000_F_407446284_KBEUJeBQWXwrPwRB7vh0CdAzT9VmXori.jpg"
+            alt="payment-img"
+            className="payment-img"
+          />
+        </div> */}
+      </div>
     </div>
   );
 };

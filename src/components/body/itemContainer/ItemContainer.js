@@ -9,7 +9,6 @@ const ItemContainer = ({ resData }, props) => {
   return (
     <div>
       <div className="item-box">
-        {/* <link to={"/product-card/" + id}> */}
         <div className="Item-box" key={id}>
           <img className="product-image" src={images[1]} />
           <br></br>
@@ -17,7 +16,6 @@ const ItemContainer = ({ resData }, props) => {
           <br></br>
           <div className="Price">From ₹{price}</div>
         </div>
-        {/* </link> */}
       </div>
     </div>
   );
