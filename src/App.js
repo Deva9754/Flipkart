@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 
 import Body from "./components/body/Body";
@@ -9,6 +9,8 @@ import About from "./components/header/about/About";
 import Header from "./components/header/Header.js";
 import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
+import { lazy, Suspense } from "react";
+const Cart = lazy(() => import("./components/cart/Cart.js"));
 
 const AppLayout = () => {
   return (
@@ -36,6 +38,14 @@ const appRoute = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/Cart",
+        element: (
+          <Suspense fallback={<h1>Data is loading</h1>}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: "/product-card/:proId",
