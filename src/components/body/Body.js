@@ -6,6 +6,7 @@ import images from "../../utils/Image";
 import ItemContainer from "./itemContainer/ItemContainer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../../utils/useOnline";
 const Body = () => {
   const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
@@ -17,10 +18,21 @@ const Body = () => {
     setFilteredData(result.products);
     console.log(result);
   };
-  ``;
+
   useEffect(() => {
     response();
   }, []);
+
+  // check whether page is online/offline
+
+  const onlineStatus = useOnline();
+  if (onlineStatus === false)
+    return (
+      <div className="offline">
+        <h1>Something went wrong ! Please check your internet connection !!</h1>
+      </div>
+    );
+
   return (
     <div className="Body">
       {/* <NavItems /> */}

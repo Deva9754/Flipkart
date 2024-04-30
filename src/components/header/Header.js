@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
@@ -8,6 +9,7 @@ const Header = () => {
   return (
     <div className="Header">
       <div className="logo">
+        <Link to={"/"}></Link>
         <img
           className="logo-image"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR3rzJeWfV0oko1aJrSLgi7v1mdxoRvK6KaEG-_Twr&s"
@@ -46,11 +48,11 @@ const Header = () => {
             {" "}
             <i className="fa-solid fa-right-to-bracket"></i> {BtnReact}
           </Button>
-
-          <Button className="btn">
-            <i className="fa-solid fa-cart-shopping"></i>Cart
-          </Button>
-
+          <Link to={"/Cart"}>
+            <Button className="btn">
+              <i className="fa-solid fa-cart-shopping"></i>Cart
+            </Button>
+          </Link>
           <Button className="btn">
             <i className="fa-solid fa-store"></i>Become a Seller
           </Button>
