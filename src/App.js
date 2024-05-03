@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client";
 
 import Body from "./components/body/Body";
@@ -10,15 +10,22 @@ import Header from "./components/header/Header.js";
 import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
 import { lazy, Suspense } from "react";
+import UserContext from "./utils/UserContext.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
+    <>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+
+          <Outlet />
+          <Footer />
+        </div>
+      </UserContext.Provider>
+    </>
   );
 };
 

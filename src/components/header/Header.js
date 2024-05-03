@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
 import { Link } from "react-router-dom";
+import UserContext from "../../utils/UserContext";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [BtnReact, SetBtnReact] = useState("Login");
+  const { loggedInUser, setUserName } = useContext(UserContext);
   return (
     <div className="Header">
       <div className="logo">
@@ -21,9 +23,9 @@ const Header = () => {
           className="search-bar"
           type="text"
           placeholder="Search for Products,brands and more"
-          value={searchText}
+          value={loggedInUser}
           onChange={(e) => {
-            setSearchText(e.target.value);
+            setUserName(e.target.value);
           }}
         />
         {/* <button
