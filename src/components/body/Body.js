@@ -2,7 +2,6 @@ import React from "react";
 import "./Body.css";
 import ImageSlider from "./carousel/ImageSlider";
 import images from "../../utils/Image";
-// import NavItems from "../navbar/NavItems.js";
 import ItemContainer from "./itemContainer/ItemContainer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -11,6 +10,7 @@ const Body = () => {
   const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
   const [searchText, setSearchText] = useState();
+  const [toggle, setToggle] = useState(true);
   const response = async () => {
     const data = await fetch("https://dummyjson.com/product");
     const result = await data.json();
@@ -35,10 +35,14 @@ const Body = () => {
 
   return (
     <div className="Body">
-      {/* <NavItems /> */}
-      <ImageSlider images={images} />
+      {toggle && <ImageSlider images={images} />}
+      {/* <ImageSlider images={images} /> */}
+      <>
+        <button onClick={() => setToggle(!toggle)}> </button>
+      </>
       <div>
         Best of Products
+        <button onClick={() => setToggle(!toggle)}>Toggle </button>
         <div>
           <input
             type="text"
