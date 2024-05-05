@@ -11,20 +11,24 @@ import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
 import { lazy, Suspense } from "react";
 import UserContext from "./utils/UserContext.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/Appstore.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
   return (
     <>
-      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-        <div className="app">
-          <Header />
+      <Provider store={appStore}>
+        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+          <div className="app">
+            <Header />
 
-          <Outlet />
-          <Footer />
-        </div>
-      </UserContext.Provider>
+            <Outlet />
+            <Footer />
+          </div>
+        </UserContext.Provider>
+      </Provider>
     </>
   );
 };
