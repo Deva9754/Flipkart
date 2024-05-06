@@ -6,6 +6,7 @@ import ItemContainer from "./itemContainer/ItemContainer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../../utils/useOnline";
+import { useSelector } from "react-redux";
 const Body = () => {
   const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
@@ -16,7 +17,7 @@ const Body = () => {
     const result = await data.json();
     setListOfProduct(result.products);
     setFilteredData(result.products);
-    console.log(result);
+    // console.log(result);
   };
 
   useEffect(() => {
@@ -33,6 +34,11 @@ const Body = () => {
       </div>
     );
 
+  // Subscribing store
+
+  const SearchItems = useSelector((store) => store?.search?.item);
+  console.log(SearchItems + "search bar");
+
   return (
     <div className="Body">
       {toggle && <ImageSlider images={images} />}
@@ -44,15 +50,15 @@ const Body = () => {
         Best of Products
         <button onClick={() => setToggle(!toggle)}>Toggle </button>
         <div>
-          <input
+          {/* <input
             type="text"
             placeholder="search "
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
-          />
-          <button
+          /> */}
+          {/* <button
             type="submit"
             onClick={() => {
               const filteredData = listOfProduct.filter((product) =>
@@ -62,14 +68,20 @@ const Body = () => {
             }}
           >
             Search
-          </button>
+          </button> */}
           <div className="item-box">
-            {filteredData?.length &&
-              filteredData?.map((item) => (
-                <Link key={item?.id} to={"/product-card/" + item?.id}>
-                  <ItemContainer resData={item} />
-                </Link>
-              ))}
+            {SearchItems?.length
+              ? SearchItems?.map((item) => (
+                  <Link key={item?.id} to={"/product-card/" + item?.id}>
+                    <ItemContainer resData={item} />
+                  </Link>
+                ))
+              : filteredData?.length &&
+                filteredData?.map((item) => (
+                  <Link key={item.id} to={"/product-card/" + item?.id}>
+                    <ItemContainer resData={item} />
+                  </Link>
+                ))}
           </div>
         </div>
         {/* <ShimmerContainer /> */}

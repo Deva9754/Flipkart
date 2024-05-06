@@ -25,7 +25,7 @@ const AppLayout = () => {
             <Header />
 
             <Outlet />
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </UserContext.Provider>
       </Provider>
