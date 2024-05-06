@@ -1,7 +1,9 @@
 import "./ProductCard.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import useProductCard from "../../../utils/useProductCard";
+import { useDispatch } from "react-redux";
+import { addItems } from "../../../utils/CartSlice";
 
 const ProductCard = () => {
   const { proId } = useParams();
@@ -18,8 +20,11 @@ const ProductCard = () => {
     price,
     description,
     rating,
-    thumbnail,
   } = product;
+  const dispatch = useDispatch();
+  const handleAddItem = (product) => {
+    dispatch(addItems(product));
+  };
 
   return (
     <>
@@ -50,8 +55,13 @@ const ProductCard = () => {
       </div>
 
       <div className="Buy-btn">
-        <button className="add-btn">ADD TO CART</button>
-        <button className=" add-btn buy-btn">BUY NOW</button>
+        <button className="add-btn" onClick={() => handleAddItem(product)}>
+          ADD TO CART
+        </button>
+        <Link to={"/cart"}>
+          {" "}
+          <button className=" add-btn buy-btn">GO TO CART</button>
+        </Link>
       </div>
     </>
   );

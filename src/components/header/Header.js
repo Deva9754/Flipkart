@@ -1,13 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
 import { Link } from "react-router-dom";
-import UserContext from "../../utils/UserContext";
+// import UserContext from "../../utils/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems } from "../../utils/SearchSlice";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
+  const [listOfProduct, setListOfProduct] = useState();
+  const [filteredData, setFilteredData] = useState();
   const [BtnReact, SetBtnReact] = useState("Login");
-  const { loggedInUser, setUserName } = useContext(UserContext);
+  // const { loggedInUser, setUserName } = useContext(UserContext);
+  //Api FETCHED
+  const response = async () => {
+    const data = await fetch("https://dummyjson.com/product");
+    const result = await data.json();
+    setListOfProduct(result.products);
+    setFilteredData(result.products);
+    // console.log(result);
+  };
+
+  useEffect(() => {
+    response();
+  }, []);
+
+  //dispatch store
+  const dispatch = useDispatch();
+  const handleClick = (filteredData) => {
+    dispatch(addItems(filteredData));
+  };
+  //subscribing store
+  const cartItems = useSelector((store) => store?.cart?.items);
+
   return (
     <div className="Header">
       <div className="logo">
@@ -23,22 +48,31 @@ const Header = () => {
           className="search-bar"
           type="text"
           placeholder="Search for Products,brands and more"
-          value={loggedInUser}
+          value={searchText}
           onChange={(e) => {
-            setUserName(e.target.value);
+            setSearchText(e.target.value);
           }}
         />
-        {/* <button
+        <button
           type="submit"
           onClick={() => {
-            console.log(searchText);
+            const filtered = listOfProduct.filter((product) =>
+              product.title.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setFilteredData(filtered);
+            handleClick(filteredData);
           }}
         >
           Search
-        </button> */}
+        </button>
       </div>
       <div className="nav-items">
         <ul className="nav-items-Bar">
+          <Link to={"/"}>
+            <Button className="btn">
+              <i className="fa-solid fa-house"></i>Home
+            </Button>
+          </Link>
           <Button
             className="btn"
             onClick={() => {
@@ -53,6 +87,7 @@ const Header = () => {
           <Link to={"/Cart"}>
             <Button className="btn">
               <i className="fa-solid fa-cart-shopping"></i>Cart
+              {cartItems.length}
             </Button>
           </Link>
           <Button className="btn">
