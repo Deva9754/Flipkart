@@ -1,7 +1,8 @@
 .cart{
     background-color: #f1f3f6;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    /* justify-content: space-evenly; */
 
     
 }
@@ -10,7 +11,6 @@
     justify-content: space-between;
     flex-direction: column;
     padding: 8px;
-    width: 42%;
     gap: 2px;
 }
 .cart-check-pin{
@@ -31,9 +31,95 @@
 .cart-order{
     display: flex;
     align-items: center;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12);
+    border-radius: 4px;
+    padding: 8px;
+}
+.cart-image{
+    width: 112px;
+    height: 87.5px;
+    border-radius: 12px;
+}
+.cart-remove-btn{
+display: flex;
+}
+.cart-checkout{
+    display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    padding: 8px;
+    gap: 2px;
+}
+.cart-checkout-box
+{
+   
     padding: 8px 12px;
     background: #fff;
     box-shadow: 0 0 2px rgba(0, 0, 0, .12);
     border-radius: 4px;
+    width: 334px;
+}
+.cart-checkout-box-text{
+    padding: 13px,8px;
+    color: #878787;
+    font: 16px;
+
+}
+.cart-checkout-details{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12);
+    border-radius: 4px;
+    padding: 12px;
+    gap: 12px;
+}
+.cart-checkout-price{
+    display: flex;
+    justify-content: space-between;
+    padding: 13px,8px;
+
+}
+.discount h4{
+    color: green;
+}
+.cart-checout-price-text{
+    font: 16px;
+    color: #212121;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.total-amount{
+    font: 18px;
+    font-weight: bold;
+    color: #212121;
+    font-family: Arial, Helvetica, sans-serif;
+}.total-amount-digit{
+    font: 18px;
+    font-weight: bold;
+    color: #212121;
+}
+.total-saving{
+    color: green;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.cart-empty{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: bold;
+    margin-top: 24px;
+}
+.place-order-btn{
+    background-color: #fb641b;
+    padding: 12px 114px;
+    border: none;
+    color: white;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
 }

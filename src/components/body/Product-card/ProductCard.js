@@ -4,6 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import useProductCard from "../../../utils/useProductCard";
 import { useDispatch } from "react-redux";
 import { addItems } from "../../../utils/CartSlice";
+import NavItems from "../navbar/NavItems";
 
 const ProductCard = () => {
   const { proId } = useParams();
@@ -21,6 +22,7 @@ const ProductCard = () => {
     description,
     rating,
   } = product;
+
   const dispatch = useDispatch();
   const handleAddItem = (product) => {
     dispatch(addItems(product));
@@ -28,6 +30,7 @@ const ProductCard = () => {
 
   return (
     <>
+      <NavItems />
       <div className="product-box">
         <div className="product-img" key={id}>
           <img

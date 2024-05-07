@@ -5,6 +5,8 @@ import StarIcon from "@mui/icons-material/Star";
 import { clearCart, removeItems } from "../../utils/CartSlice";
 import { Button } from "@mui/material";
 import "./Cart.css";
+import { Link } from "react-router-dom";
+import BecomeSeller from "../becomeSeller/BecomeSeller";
 
 const Cart = () => {
   // const { loggedInUser } = useContext(UserContext);
@@ -17,67 +19,148 @@ const Cart = () => {
   const handleRemoveItems = () => {
     dispatch(removeItems());
   };
-  console.log(cartItems[0]?.price);
+
+  // Total amount
+  const totalPriceBeforeDiscount = cartItems.reduce(
+    (total, item) => total + item.price,
+    0
+  );
+  const packingFee = 69;
+  const totalDiscountedPrice = cartItems.reduce((total, item) => {
+    const discountedPrice =
+      item.price - item.price * (item.discountPercentage / 100);
+    return total + discountedPrice + packingFee;
+  }, 0);
+  //Discount
+  const discount = cartItems.reduce(
+    (total, item) => total + item.discountPercentage,
+    0
+  );
+  const saveAmount = Math.abs(totalPriceBeforeDiscount - totalDiscountedPrice);
 
   return (
     <div>
-      {cartItems.map((items) => (
-        <div className="cart-box">
-          <div className="cart-box">
-            <div className="product-img" key={items?.id}>
-              <img
-                className="cart-image"
-                src={items?.thumbnail}
-                alt="image-loading"
-              />
-            </div>
-            <div className="product-description">
-              <div className="product-descriptio-box">
-                <span className="title">{items?.title}</span>
-                <h4>{items?.brand}</h4>
-                <p>{items?.description}</p>
-
-                <span className="rating-box">
-                  {items?.rating}
-                  {<StarIcon />}
-                </span>
+      <>
+        <div className="cart">
+          <div className="cart-body">
+            {/* <div className="cart-check-pin">
+              {" "}
+              <h4> Deliver to:</h4>
+              <div className="cart-check-text">
+                {" "}
+                <Button>Change</Button>
               </div>
+            </div> */}
+            {<BecomeSeller />}
+            {cartItems.map((items) => (
+              <div className="cart-order">
+                <div className="product-img" key={items?.id}>
+                  <img
+                    className="cart-image"
+                    src={items?.thumbnail}
+                    alt="image-loading"
+                  />
+                </div>
+                <div className="product-description">
+                  <div className="product-descriptio-box">
+                    <span className="title">{items?.title}</span>
+                    <h4>{items?.brand}</h4>
+                    <p>{items?.description}</p>
 
-              <div className="rating">Special Price</div>
-              <h3> ₹{items?.price}</h3>
-              <span className="discount">{items?.discountPercentage}% off</span>
-            </div>
+                    <span className="rating-box">
+                      {items?.rating}
+                      {<StarIcon />}
+                    </span>
+                  </div>
+
+                  <div className="rating">Special Price</div>
+                  <h3> ₹{items?.price}</h3>
+                  <span className="discount">
+                    {items?.discountPercentage}% off
+                  </span>
+                </div>
+                <div className="cart-remove-btn">
+                  <Button onClick={() => handleRemoveItems(cartItems)}>
+                    Remove
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="cart-checkout">
+            {" "}
             <div>
-              <Button onClick={() => handleRemoveItems(cartItems)}>
-                Remove
-              </Button>
+              <div className="cart-checkout-box">
+                <div className="cart-checkout-box-text">PRICE DETAILS</div>
+              </div>
+              <div className="cart-checkout-details">
+                <div className="cart-checout-price-text">
+                  Price ({cartItems.length}items)
+                </div>
+                <div>
+                  <h4>
+                    {" "}
+                    ₹{cartItems.reduce((total, item) => total + item.price, 0)}
+                  </h4>
+                </div>
+              </div>
+              <div className="cart-checkout-details">
+                <div className="cart-checout-price-text">Discount</div>
+                <div className="discount">-{discount.toFixed(1)}%</div>
+              </div>
+              <div className="cart-checkout-details">
+                <div className="cart-checout-price-text">Packing Fee</div>
+                <div>₹{packingFee}</div>
+              </div>
+              <div className="cart-checkout-details">
+                <div className="total-amount">Total Amount</div>
+                <div className="total-amount-digit">
+                  ₹{totalDiscountedPrice.toFixed(2)}
+                </div>
+              </div>
+              <div className="cart-checkout-details">
+                <div className="total-saving">
+                  You will save ₹{saveAmount.toFixed(0)} on this order
+                </div>
+              </div>
+              <div className="Buy-btn">
+                <button className="place-order-btn">PLACE ORDER</button>
+              </div>
             </div>
+            <div></div>
           </div>
         </div>
-      ))}
-      <div className="cart-empty">
-        {" "}
-        {cartItems.length === 0 && <h1> Please add some items Hungry !!</h1>}
-      </div>
+      </>
 
-      <div className="Buy-btn">
-        <button className="add-btn" onClick={() => handleClearItems(cartItems)}>
-          Clear Cart
-        </button>
-      </div>
-      <div>
-        {cartItems.map((item) => (
-          <div key={item.id}>
-            <h4>{item.title}</h4>
-            <p>Price: {item.price}</p>
-          </div>
-        ))}
-        <h4>
-          Total Price:{" "}
-          {cartItems.reduce((total, item) => total + item.price, 0)}
-        </h4>
+      {cartItems.length ? (
+        <div className="Buy-btn">
+          <button
+            className="add-btn"
+            onClick={() => handleClearItems(cartItems)}
+          >
+            Clear Cart
+          </button>
+        </div>
+      ) : (
+        <div className="Buy-btn">
+          <Link to={"/"}>
+            <button className="add-btn">Order Now</button>
+          </Link>
+        </div>
+      )}
+      <div className="cart-empty">
+        {cartItems.length === 0 && (
+          <div className="cart-empty"> Please add some items Hungry !!</div>
+        )}
       </div>
     </div>
   );
 };
 export default Cart;
+
+{
+  /* <div>
+Total Price:{" "}
+{cartItems.reduce((total, item) => total + item.price, 0)}
+</div> */
+}
