@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../../utils/useOnline";
 import { useSelector } from "react-redux";
+import NavItems from "./navbar/NavItems";
 const Body = () => {
   const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
@@ -36,39 +37,13 @@ const Body = () => {
 
   // Subscribing store
 
-  const SearchItems = useSelector((store) => store?.search?.item);
-  console.log(SearchItems + "search bar");
-
+  const SearchItems = useSelector((store) => store?.search?.items);
   return (
     <div className="Body">
-      {toggle && <ImageSlider images={images} />}
-      {/* <ImageSlider images={images} /> */}
-      <>
-        <button onClick={() => setToggle(!toggle)}> </button>
-      </>
+      <NavItems />
+      {<ImageSlider images={images} />}
       <div>
-        Best of Products
-        <button onClick={() => setToggle(!toggle)}>Toggle </button>
         <div>
-          {/* <input
-            type="text"
-            placeholder="search "
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          /> */}
-          {/* <button
-            type="submit"
-            onClick={() => {
-              const filteredData = listOfProduct.filter((product) =>
-                product.title.toLowerCase().includes(searchText.toLowerCase())
-              );
-              setFilteredData(filteredData);
-            }}
-          >
-            Search
-          </button> */}
           <div className="item-box">
             {SearchItems?.length
               ? SearchItems?.map((item) => (

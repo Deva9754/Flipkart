@@ -9,7 +9,6 @@ import { addItems } from "../../utils/SearchSlice";
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [listOfProduct, setListOfProduct] = useState();
-  const [filteredData, setFilteredData] = useState();
   const [BtnReact, SetBtnReact] = useState("Login");
   // const { loggedInUser, setUserName } = useContext(UserContext);
   //Api FETCHED
@@ -17,7 +16,6 @@ const Header = () => {
     const data = await fetch("https://dummyjson.com/product");
     const result = await data.json();
     setListOfProduct(result.products);
-    setFilteredData(result.products);
     // console.log(result);
   };
 
@@ -27,8 +25,12 @@ const Header = () => {
 
   //dispatch store
   const dispatch = useDispatch();
-  const handleClick = (filteredData) => {
-    dispatch(addItems(filteredData));
+  const handleClick = () => {
+    const filtered = listOfProduct.filter((product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+    dispatch(addItems(filtered));
+    setSearchText("");
   };
   //subscribing store
   const cartItems = useSelector((store) => store?.cart?.items);
@@ -53,16 +55,7 @@ const Header = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button
-          type="submit"
-          onClick={() => {
-            const filtered = listOfProduct.filter((product) =>
-              product.title.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilteredData(filtered);
-            handleClick(filteredData);
-          }}
-        >
+        <button type="submit" onClick={handleClick}>
           Search
         </button>
       </div>
@@ -90,9 +83,11 @@ const Header = () => {
               {cartItems.length}
             </Button>
           </Link>
-          <Button className="btn">
-            <i className="fa-solid fa-store"></i>Become a Seller
-          </Button>
+          <Link to={"/becomeseller"}>
+            <Button className="btn">
+              <i className="fa-solid fa-store"></i>Become a Seller
+            </Button>
+          </Link>
         </ul>
       </div>
     </div>

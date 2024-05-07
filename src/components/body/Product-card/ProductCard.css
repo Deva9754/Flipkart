@@ -5,18 +5,14 @@
     align-items: center;
     padding: 40px;
 }
-.product-img{
-    border-radius: 8px;
-    box-shadow: 2px 2px grey;
-}
-.product-description{
-}
+
 .image{
     display: inline-block;
     max-height: 416px;
     max-width: 416px;
     vertical-align: top;
     position: inherit;
+    border-radius: 8px;
 }
 .product-description{
     padding: 0px 0px 0px 24px;

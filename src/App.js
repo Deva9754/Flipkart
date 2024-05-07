@@ -13,6 +13,7 @@ import { lazy, Suspense } from "react";
 import UserContext from "./utils/UserContext.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/Appstore.js";
+import BecomeSeller from "./components/becomeSeller/BecomeSeller.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
 
 const AppLayout = () => {
@@ -23,9 +24,8 @@ const AppLayout = () => {
         <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
           <div className="app">
             <Header />
-
             <Outlet />
-            {/* <Footer /> */}
+            <Footer />
           </div>
         </UserContext.Provider>
       </Provider>
@@ -61,6 +61,10 @@ const appRoute = createBrowserRouter([
       {
         path: "/product-card/:proId",
         element: <ProductCard />,
+      },
+      {
+        path: "/becomeSeller",
+        element: <BecomeSeller />,
       },
     ],
     errorElement: <Error />,
