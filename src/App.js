@@ -20,6 +20,8 @@ const AppLayout = () => {
   const [userName, setUserName] = useState();
   window.scrollTo(0, 0);
 
+  console.log("I am called");
+
   return (
     <>
       <Provider store={appStore}>

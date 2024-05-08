@@ -20,3 +20,7 @@
     overflow-y: hidden;
     overflow-x:hidden;
   }
+
+  .link{
+    text-decoration: none;
+}

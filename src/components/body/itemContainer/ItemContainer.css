@@ -24,3 +24,6 @@
     font-style: inherit;
     color: rgb(90, 89, 89);
 }
+.link{
+    text-decoration: none;
+}

@@ -10,7 +10,7 @@ const useOnline = () => {
       window.addEventListener("online", () => {
         setOnlineStatus(true);
       });
-  });
+  }, []);
 
   return onlineStatus;
 };

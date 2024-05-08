@@ -47,13 +47,21 @@ const Body = () => {
           <div className="item-box">
             {SearchItems?.length
               ? SearchItems?.map((item) => (
-                  <Link key={item?.id} to={"/product-card/" + item?.id}>
+                  <Link
+                    className="link"
+                    key={item?.id}
+                    to={"/product-card/" + item?.id}
+                  >
                     <ItemContainer resData={item} />
                   </Link>
                 ))
               : filteredData?.length &&
                 filteredData?.map((item) => (
-                  <Link key={item.id} to={"/product-card/" + item?.id}>
+                  <Link
+                    key={item.id}
+                    to={"/product-card/" + item?.id}
+                    className="link"
+                  >
                     <ItemContainer resData={item} />
                   </Link>
                 ))}
