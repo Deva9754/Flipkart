@@ -7,7 +7,7 @@
 
 .Header{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 10px;
     align-items: center;
     /* border-bottom: 2px solid grey; */
@@ -16,8 +16,7 @@
     overflow: hidden;
 }
 .logo-image{
-    width: 65%;
-    border-radius: 8px;
+    width: 45%;
     cursor: pointer;
 
 }.logo{
@@ -37,15 +36,28 @@
 
 
 }
-
+.Search-submit{
+  background-color: white;
+    border: none;
+    border-radius: 4px;
+    padding-right: 4px;
+    color: grey;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    opacity: 1;
+    text-align: center;
+}
+input:focus{
+  outline: none;
+}
 .search-bar{
 
     border: none;
-    border-radius: 12px;
+    border-radius: 4px;
     height: 30px;
     flex: 1;
     padding-left: 25px;
-    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
     background-size: 20px; 
 }
 ::placeholder {

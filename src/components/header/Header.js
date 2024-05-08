@@ -89,7 +89,7 @@ const Header = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button type="submit" onClick={handleClick}>
+        <button type="submit" className="Search-submit" onClick={handleClick}>
           Search
         </button>
       </div>

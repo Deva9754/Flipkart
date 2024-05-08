@@ -108,10 +108,14 @@ display: flex;
 
 }
 .cart-empty{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-style: bold;
+
     margin-top: 24px;
+    background-color: white;
 }
 .place-order-btn{
     background-color: #fb641b;
@@ -122,4 +126,17 @@ display: flex;
     border-radius: 8px;
     font-weight: bolder;
     font-family: Arial, Helvetica, sans-serif;
+}
+.shop-btn{
+    background-color: #2874f0;
+    padding: 12px 114px;
+    border: none;
+    color: white;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cart-empty-img{
+    width: 262px;
 }
