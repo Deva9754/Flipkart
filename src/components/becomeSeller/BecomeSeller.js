@@ -9,8 +9,11 @@ const BecomeSeller = () => {
   const [city, setCity] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen((prev) => !prev);
+  const handleClose = () => {
+    setOpen((prev) => !prev);
+    setPincode("");
+  };
   const style = {
     position: "absolute",
     top: "50%",
@@ -42,46 +45,42 @@ const BecomeSeller = () => {
   const handleDisplay = () => {
     fetchCity(pincode);
   };
-  return (
-    <div>
-      <div className="check">
-        <div className="deliver">
-          {" "}
-          Deliver to : {city} - {pincode}
-        </div>
-        <Button onClick={handleOpen}>Check</Button>
 
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <div className="pincode">
-              {/* <div className="">Use pincode to check the delivery:</div> */}
-              <div className="pincode-input">
-                <TextField
-                  label="Check your city"
-                  variant="standard"
-                  type="text"
-                  id="pincodeInput"
-                  value={pincode}
-                  onChange={(e) => setPincode(e.target.value)}
-                />
-                <Button onClick={handleDisplay}>Check</Button>
-              </div>
-            </div>
-            <div className="invalid-pin"> {errorMessage}</div>
-          </Box>
-        </Modal>
+  return (
+    <div className="check">
+      <div className="deliver">
+        Deliver to : {city} - {pincode}
       </div>
+      <Button onClick={handleOpen}>Check</Button>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-descripti1on"
+      >
+        <Box sx={style}>
+          <div className="pincode">
+            {/* <div className="">Use pincode to check the delivery:</div> */}
+            <div className="pincode-input">
+              <TextField
+                label="Check your city"
+                variant="standard"
+                type="text"
+                id="pincodeInput"
+                value={pincode}
+                onChange={(e) => setPincode(e.target.value)}
+              />
+              <Button onClick={handleDisplay}>Check</Button>
+            </div>
+          </div>
+          <div className="invalid-pin"> {errorMessage}</div>
+        </Box>
+      </Modal>
     </div>
   );
 };
 
 export default BecomeSeller;
 
-//horizontal scroll bar remove
-//scroll top 0 in cart page  window.scrollTO
 //need to implement skeleton import from MUI

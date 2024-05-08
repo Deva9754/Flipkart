@@ -90,17 +90,14 @@ input:focus{
   font-size: 11px;
   font-family: Arial, Helvetica, sans-serif;
   color: #F0F0F0;
-  margin: -7px 0px 0px 0px;
   text-align: center;
   font-style: italic;
-  padding: 2px;
 }
-.explore:hover{
-  text-decoration: underline;
-}
+
 .explore-logo{
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 .plus{
   color: #FFE500;
@@ -108,11 +105,10 @@ input:focus{
   font-family:Arial, Helvetica, sans-serif ;
   text-align: center;
   font-style: italic;
-  margin-top: -1px;
-
 }
 .img-plus{
   display: flex;
+  align-items: center;
   gap: 2px;
 }
 .plus-image{

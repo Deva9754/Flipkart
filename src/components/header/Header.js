@@ -60,23 +60,24 @@ const Header = () => {
   return (
     <div className="Header">
       <div className="logo">
-        <Link to={"/"}></Link>
-        <img
-          className="logo-image"
-          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
-          alt="Logo"
-        />
+        <Link to="/" className="link">
+          <img
+            className="logo-image"
+            src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+            alt="Logo"
+          />
 
-        <div className="explore-logo">
-          <div className="explore">Explore</div>
-          <div className="img-plus">
-            <img
-              className="plus-image"
-              src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
-            ></img>
-            <span className="plus">Plus</span>
+          <div className="explore-logo">
+            <div className="explore">Explore</div>
+            <div className="img-plus">
+              <img
+                className="plus-image"
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
+              />
+              <div className="plus">Plus</div>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       <div className="Search">
