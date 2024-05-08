@@ -28,6 +28,8 @@ const ProductCard = () => {
     dispatch(addItems(product));
   };
 
+  window.scrollTo(0, 0);
+
   return (
     <>
       <NavItems />

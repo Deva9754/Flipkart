@@ -19,6 +19,7 @@ const Cart = () => {
   const handleRemoveItems = () => {
     dispatch(removeItems());
   };
+  window.scrollTo(0, 0);
 
   // Total amount
   const totalPriceBeforeDiscount = cartItems.reduce(

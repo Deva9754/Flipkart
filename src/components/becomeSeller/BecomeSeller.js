@@ -2,7 +2,6 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./BecomeSeller.css";
 const BecomeSeller = () => {
@@ -82,3 +81,7 @@ const BecomeSeller = () => {
 };
 
 export default BecomeSeller;
+
+//horizontal scroll bar remove
+//scroll top 0 in cart page  window.scrollTO
+//need to implement skeleton import from MUI
