@@ -18,6 +18,8 @@ const Cart = lazy(() => import("./components/cart/Cart.js"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
+  window.scrollTo(0, 0);
+
   return (
     <>
       <Provider store={appStore}>

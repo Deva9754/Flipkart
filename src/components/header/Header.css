@@ -22,6 +22,8 @@
 
 }.logo{
     width: 180px;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -72,3 +74,36 @@
     display: flex;
     justify-content: space-evenly;
   }
+.explore{
+  font-size: 11px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #F0F0F0;
+  margin: -7px 0px 0px 0px;
+  text-align: center;
+  font-style: italic;
+  padding: 2px;
+}
+.explore:hover{
+  text-decoration: underline;
+}
+.explore-logo{
+  display: flex;
+  align-items: center;
+}
+.plus{
+  color: #FFE500;
+  font-size: 11px;
+  font-family:Arial, Helvetica, sans-serif ;
+  text-align: center;
+  font-style: italic;
+  margin-top: -1px;
+
+}
+.img-plus{
+  display: flex;
+  gap: 2px;
+}
+.plus-image{
+  width: 10px;
+  height: 11px;
+}
