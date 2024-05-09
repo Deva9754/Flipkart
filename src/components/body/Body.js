@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import useOnline from "../../utils/useOnline";
 import { useSelector } from "react-redux";
 import NavItems from "./navbar/NavItems";
+import ShimmerContainer from "./shimmer/ShimmerContainer";
 const Body = () => {
   const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
@@ -45,8 +46,9 @@ const Body = () => {
       <div>
         <div>
           <div className="item-box">
-            {SearchItems?.length
-              ? SearchItems?.map((item) => (
+            {
+              filteredData?.length ? (
+                filteredData?.map((item) => (
                   <Link
                     className="link"
                     key={item?.id}
@@ -55,16 +57,20 @@ const Body = () => {
                     <ItemContainer resData={item} />
                   </Link>
                 ))
-              : filteredData?.length &&
-                filteredData?.map((item) => (
-                  <Link
-                    key={item.id}
-                    to={"/product-card/" + item?.id}
-                    className="link"
-                  >
-                    <ItemContainer resData={item} />
-                  </Link>
-                ))}
+              ) : (
+                <ShimmerContainer />
+              )
+              // : filteredData?.length &&
+              //   filteredData?.map((item) => (
+              //     <Link
+              //       key={item.id}
+              //       to={"/product-card/" + item?.id}
+              //       className="link"
+              //     >
+              //       <ItemContainer resData={item} />
+              //     </Link>
+              //   ))
+            }
           </div>
         </div>
         {/* <ShimmerContainer /> */}

@@ -1,40 +1,4 @@
-.Shimmer-card{
-    
-  
- border: 1px solid grey;
-    border-radius: 8px;
-    padding-bottom: 24px;
-    display: inline-block;
-    overflow: hidden;
-    padding: 5px;
- 
+.skeleton-box{
+    display: flex;
+    flex-wrap: wrap;
 }
-.shimmer-img{
-    width: 200px;
-    height: 186px;
-    background-color: rgb(249, 225, 225);
-    border-radius: 8px;
-   
-
-}
-.shimmer-product-name{
-    width: 200px;
-    height: 50px;
-    background-color: antiquewhite;
-    border-radius: 8px;
-    text-align: center;
-    
-       transition: all .6s ease-out;
-       
-}
-.shimmer-product-price{
-   
-    width: 200px;
-    height: 50px;
-    background-color: antiquewhite;
-    border-radius: 8px;
-    margin-top: 5px;
-    text-align: center;
-  
-}
-      

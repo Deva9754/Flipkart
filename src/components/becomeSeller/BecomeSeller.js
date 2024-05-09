@@ -40,6 +40,7 @@ const BecomeSeller = () => {
       setCity("");
       setErrorMessage("Invalid Pincode");
     }
+    setErrorMessage("");
   };
 
   const handleDisplay = () => {
