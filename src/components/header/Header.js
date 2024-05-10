@@ -12,6 +12,7 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
@@ -122,7 +123,7 @@ const Header = () => {
           </Link>
 
           <button className="btn" onClick={handleOpen}>
-            <i className="fa-solid fa-right-to-bracket"></i> {BtnReact}
+            <i className="fa-solid fa-right-to-bracket"></i> Login
           </button>
 
           <Link to={"/Cart"}>
