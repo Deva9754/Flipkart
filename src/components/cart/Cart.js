@@ -6,7 +6,7 @@ import { clearCart, removeItems } from "../../utils/CartSlice";
 import { Button } from "@mui/material";
 import "./Cart.css";
 import { Link } from "react-router-dom";
-import BecomeSeller from "../becomeSeller/BecomeSeller";
+import BecomeSeller from "../locationcheck/LocationCheck";
 
 const Cart = () => {
   // const { loggedInUser } = useContext(UserContext);

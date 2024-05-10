@@ -7,7 +7,7 @@ const ShimmerContainer = () => {
   return (
     <div className="skeleton-box">
       {skeletonBox.map((index) => (
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 2 }} key={index}>
           <Skeleton variant="rectangular" width={210} height={118} />
 
           <Skeleton variant="text" width={110} />

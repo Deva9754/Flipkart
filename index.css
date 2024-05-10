@@ -6,7 +6,9 @@
 *, *::before, *::after {
     box-sizing: inherit;
   }
-  
+  ::-webkit-scrollbar{
+    width: 0px;
+  }
   html {
     /* this makes sure the padding and the border is included in the box sizing */
     box-sizing: border-box;

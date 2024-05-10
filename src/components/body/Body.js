@@ -12,8 +12,6 @@ import ShimmerContainer from "./shimmer/ShimmerContainer";
 const Body = () => {
   const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
-  const [searchText, setSearchText] = useState();
-  const [toggle, setToggle] = useState(true);
   const response = async () => {
     const data = await fetch("https://dummyjson.com/product");
     const result = await data.json();

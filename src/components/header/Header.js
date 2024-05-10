@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
-import { Link } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../utils/SearchSlice";
 // Login modal
@@ -16,11 +16,26 @@ import { TextField } from "@mui/material";
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [listOfProduct, setListOfProduct] = useState();
-  const [BtnReact, SetBtnReact] = useState("Login");
+  // const params = useParams();
   // Login modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  //
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const navigate = useNavigate();
+  // navigate("/");
+
+  // const handleChange = (e) => {
+  //   setSearchTerm(e.target.value);
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (searchTerm.trim() !== "") {
+  //     history.push(`/search/${searchTerm}`);
+  //   }
+  // };
   const style = {
     position: "absolute",
     top: "50%",
@@ -53,7 +68,9 @@ const Header = () => {
     );
     dispatch(addItems(filtered));
     setSearchText("");
+    console.log(filtered);
   };
+
   //subscribing store
   const cartItems = useSelector((store) => store?.cart?.items);
 
@@ -90,9 +107,11 @@ const Header = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button type="submit" className="Search-submit" onClick={handleClick}>
-          Search
-        </button>
+        <Link to={"/SearchProduct"}>
+          <button type="submit" className="Search-submit" onClick={handleClick}>
+            Search
+          </button>
+        </Link>
       </div>
       <div className="nav-items">
         <ul className="nav-items-Bar">
