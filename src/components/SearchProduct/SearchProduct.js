@@ -1,80 +1,71 @@
-import { useSelector } from "react-redux";
 import ShimmerContainer from "../body/shimmer/ShimmerContainer";
-import { Link } from "react-router-dom";
-import ItemContainer from "../body/itemContainer/ItemContainer";
+import { Link, useParams } from "react-router-dom";
 
-// const Searchproduct = () => {
-//   // SearchResult.js
-//   const { proTitle } = useParams();
-//   const [products, setProducts] = useState([]);
-//   const [filteredProducts, setFilteredProducts] = useState([]);
+import useSearchProduct from "../../utils/useSearchProduct";
 
-//   useEffect(() => {
-//     const fetchData = async () => {
+const Searchproduct = () => {
+  const { ProTitle } = useParams();
+  // SearchResult.js
+  const { loading, searchProduct } = useSearchProduct(ProTitle);
+  console.log(searchProduct?.products);
 
-//         const response = await fetch(
-//           "https://dummyjson.com/products/search?q=${proTitle}"
-//         );
-//        setProducts(response.data);
+  if (loading) {
+    return (
+      <div>
+        <ShimmerContainer />
+      </div>
+    );
+  }
 
-//     };
+  // const {
+  //   id,
+  //   title,
+  //   discountPercentage,
+  //   images,
+  //   brand,
+  //   price,
+  //   description,
+  //   rating,
+  // } = searchProduct?.products[1];
 
-//     fetchData();
-//   }, []);
-
-//   useEffect(() => {
-//     const filtered = products.filter((product) =>
-//       product.name.toLowerCase().includes(query.toLowerCase())
-//     );
-//     setFilteredProducts(filtered);
-//   }, [proTitle, products]);
-
-//   const SearchResult = () => {
-//     return (
-//       <div>
-//         <h2>Search Results</h2>
-//         <ul>
-//           {filteredProducts.map((product) => (
-//             <li key={product.id}>{product.name}</li>
-//           ))}
-//         </ul>
-//       </div>
-//     );
-//   };
-// };
-// export default Searchproduct;
-
-const SearchProduct = () => {
-  //subscribing store
-  const SearchItems = useSelector((store) => store?.search?.items);
-  console.log(SearchItems.title);
   return (
     <div>
-      {SearchItems?.length > 0 ? (
-        SearchItems?.map((item) => {
-          <Link key={item.id} to={"/product-card/" + item?.id} className="link">
-            <ItemContainer resData={item} />
-          </Link>;
-        })
-      ) : (
-        <ShimmerContainer />
-      )}
+      <h2>Search Results</h2>
+
+      {searchProduct?.products?.length &&
+        searchProduct?.products?.map((item) => (
+          <div className="product-box" key={item?.id}>
+            <div className="product-img">
+              <img
+                className="image"
+                src={item?.images?.length && item?.images[0]}
+                alt="image-loading"
+              />
+            </div>
+            <div className="product-description">
+              <div className="product-descriptio-box">
+                <span className="title">{item?.title}</span>
+                <h4>{item?.brand}</h4>
+                <p>{item?.description}</p>
+
+                <span className="rating-box">
+                  {item?.rating}
+                  {/* <StarIcon /> */}
+                </span>
+                <span className="stock-box">
+                  {item?.stock}
+                  {/* <StarIcon /> */}
+                </span>
+              </div>
+
+              <div className="rating">Special Price</div>
+              <h1> ₹{item?.price}</h1>
+              <span className="discount">{item?.discountPercentage}% off</span>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
 
-export default SearchProduct;
-
-{
-  /* <div>{filteredData?.length &&
-      filteredData?.map((item) => (
-        <Link
-          key={item.id}
-          to={"/product-card/" + item?.id}
-          className="link"
-        >
-          <ItemContainer resData={item} />
-        </Link>
-        }
-        </div>; */
-}
+export default Searchproduct;
