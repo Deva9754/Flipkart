@@ -21,6 +21,7 @@ const ProductCard = () => {
     price,
     description,
     rating,
+    stock,
   } = product;
 
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const ProductCard = () => {
               {rating}
               {<StarIcon />}
             </span>
+            <span className="rating-box">stock : {stock}</span>
           </div>
 
           <div className="rating">Special Price</div>
