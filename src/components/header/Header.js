@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
 
@@ -13,30 +13,17 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import checkValidationdata from "../../utils/CheckValidations";
+import useSearchProduct from "../../utils/useSearchProduct";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [listOfProduct, setListOfProduct] = useState();
-  // const params = useParams();
   // Login modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  //
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const navigate = useNavigate();
-  // navigate("/");
 
-  // const handleChange = (e) => {
-  //   setSearchTerm(e.target.value);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (searchTerm.trim() !== "") {
-  //     history.push(`/search/${searchTerm}`);
-  //   }
-  // };
   const style = {
     position: "absolute",
     top: "50%",
@@ -60,6 +47,18 @@ const Header = () => {
   useEffect(() => {
     response();
   }, []);
+
+  //Login
+  const email = useRef();
+  const password = useRef();
+  const [message, setMessage] = useState("hello message");
+  const check = () => {
+    let message = checkValidationdata(
+      email.current.value,
+      password.current.value
+    );
+    setMessage(message);
+  };
 
   //dispatch store
   const dispatch = useDispatch();
@@ -108,7 +107,7 @@ const Header = () => {
             setSearchText(e.target.value);
           }}
         />
-        <Link to={"/SearchProduct"}>
+        <Link to={"/SearchProduct/" + searchText}>
           <button type="submit" className="Search-submit" onClick={handleClick}>
             Search
           </button>
@@ -206,11 +205,14 @@ const Header = () => {
                   id="standard-basic"
                   label="Enter email"
                   variant="standard"
+                  ref={email}
                 />
                 <TextField
                   id="standard-basic"
                   label="Enter Password"
+                  type="password"
                   variant="standard"
+                  ref={password}
                 />{" "}
                 <Typography sx={{ fontSize: "12px", mt: 2 }}>
                   By continuing, you agree to Flipkart's Terms of Use and
@@ -218,6 +220,7 @@ const Header = () => {
                 </Typography>
                 <Typography sx={{ mt: 2 }}>
                   <Button
+                    onClick={check}
                     sx={{
                       backgroundColor: "#fb641b",
                       boxShadow: "0 1px 2px 0 rgba(0, 0, 0, .2)",
@@ -230,7 +233,9 @@ const Header = () => {
                   >
                     Login
                   </Button>
+                  <p>{message}</p>
                 </Typography>
+                {/* <Typography>{message}</Typography> */}
                 <Typography
                   sx={{ paddingTop: 26, color: "#2874f0", cursor: "pointer" }}
                 >
