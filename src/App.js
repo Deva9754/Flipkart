@@ -22,8 +22,6 @@ const AppLayout = () => {
   const [userName, setUserName] = useState();
   window.scrollTo(0, 0);
 
-  console.log("I am called");
-
   return (
     <>
       <Provider store={appStore}>
@@ -69,7 +67,7 @@ const appRoute = createBrowserRouter([
         element: <ProductCard />,
       },
       {
-        path: "/SearchProduct",
+        path: "/SearchProduct/:ProTitle",
         element: <Searchproduct />,
       },
       {
