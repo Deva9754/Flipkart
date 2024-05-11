@@ -44,31 +44,19 @@ const Body = () => {
       <div>
         <div>
           <div className="item-box">
-            {
-              filteredData?.length ? (
-                filteredData?.map((item) => (
-                  <Link
-                    className="link"
-                    key={item?.id}
-                    to={"/product-card/" + item?.id}
-                  >
-                    <ItemContainer resData={item} />
-                  </Link>
-                ))
-              ) : (
-                <ShimmerContainer />
-              )
-              // : filteredData?.length &&
-              //   filteredData?.map((item) => (
-              //     <Link
-              //       key={item.id}
-              //       to={"/product-card/" + item?.id}
-              //       className="link"
-              //     >
-              //       <ItemContainer resData={item} />
-              //     </Link>
-              //   ))
-            }
+            {filteredData?.length ? (
+              filteredData?.map((item) => (
+                <Link
+                  className="link"
+                  key={item?.id}
+                  to={"/product-card/" + item?.id}
+                >
+                  <ItemContainer resData={item} />
+                </Link>
+              ))
+            ) : (
+              <ShimmerContainer />
+            )}
           </div>
         </div>
         {/* <ShimmerContainer /> */}
