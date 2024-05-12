@@ -1,0 +1,29 @@
+.Search-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    background-color: white;
+}
+.serach-box{
+    background-color: #f1f3f6;
+
+}
+.search-Buy-btn{
+    display: flex;
+    padding: 9px;
+    gap: 8px;
+    justify-content: center;
+}
+
+.search-add-btn{
+    color: #fff;
+    cursor: pointer;
+    background-color: #ff9f00;
+    border: none;
+    border-radius: 2px;
+    padding: 18px;
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 0 1px 2px #0003;
+}
