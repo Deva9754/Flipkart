@@ -2,12 +2,16 @@ import "./ProductCard.css";
 import { Link, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import useProductCard from "../../../utils/useProductCard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../../utils/CartSlice";
 import NavItems from "../navbar/NavItems";
+import ShimmerContainer from "../shimmer/ShimmerContainer";
+import AddButton from "../../button/AddButton";
 
 const ProductCard = () => {
   const { proId } = useParams();
+
+  const cartItems = useSelector((store) => store?.cart?.items);
 
   // custom hooks
   const product = useProductCard(proId);
@@ -23,6 +27,7 @@ const ProductCard = () => {
     rating,
     stock,
   } = product;
+  if (product.length === 0) return <ShimmerContainer />;
 
   const dispatch = useDispatch();
   const handleAddItem = (product) => {
@@ -62,13 +67,16 @@ const ProductCard = () => {
       </div>
 
       <div className="Buy-btn">
-        <button className="add-btn" onClick={() => handleAddItem(product)}>
+        <AddButton />
+        {/* <button
+          className="add-btn"
+          onClick={() => {
+            handleAddItem(product);
+            handleClickOpen();
+          }}
+        >
           ADD TO CART
-        </button>
-        <Link to={"/cart"}>
-          {" "}
-          <button className=" add-btn buy-btn">GO TO CART</button>
-        </Link>
+        </button> */}
       </div>
     </>
   );
