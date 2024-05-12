@@ -11,7 +11,7 @@ import BecomeSeller from "../locationcheck/LocationCheck";
 const Cart = () => {
   // const { loggedInUser } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
-  // console.log(cartItems);
+  console.log(cartItems);
   const dispatch = useDispatch();
   const handleClearItems = () => {
     dispatch(clearCart());
@@ -45,14 +45,6 @@ const Cart = () => {
         {cartItems.length ? (
           <div className="cart">
             <div className="cart-body">
-              {/* <div className="cart-check-pin">
-              {" "}
-              <h4> Deliver to:</h4>
-              <div className="cart-check-text">
-                {" "}
-                <Button>Change</Button>
-              </div>
-            </div> */}
               {<BecomeSeller />}
               {cartItems.map((items) => (
                 <div className="cart-order">
