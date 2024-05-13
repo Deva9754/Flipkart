@@ -1,12 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../utils/UserContext";
 import { useDispatch, useSelector } from "react-redux";
 import StarIcon from "@mui/icons-material/Star";
-import { clearCart, removeItems } from "../../utils/CartSlice";
+import { addItems, clearCart, removeItems } from "../../utils/CartSlice";
 import { Button } from "@mui/material";
 import "./Cart.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BecomeSeller from "../locationcheck/LocationCheck";
+import placeorder from "./PlaceOrder";
 
 const Cart = () => {
   // const { loggedInUser } = useContext(UserContext);
@@ -19,25 +20,47 @@ const Cart = () => {
   const handleRemoveItems = () => {
     dispatch(removeItems());
   };
+  const handleAddItems = () => {
+    dispatch(addItems());
+  };
+
   window.scrollTo(0, 0);
 
   // Total amount
   const totalPriceBeforeDiscount = cartItems.reduce(
-    (total, item) => total + item.price,
+    (total, item) => total + item?.price,
     0
   );
   const packingFee = 69;
   const totalDiscountedPrice = cartItems.reduce((total, item) => {
     const discountedPrice =
-      item.price - item.price * (item.discountPercentage / 100);
+      item?.price - item?.price * (item?.discountPercentage / 100);
     return total + discountedPrice + packingFee;
   }, 0);
   //Discount
   const discount = cartItems.reduce(
-    (total, item) => total + item.discountPercentage,
+    (total, item) => total + item?.discountPercentage,
     0
   );
   const saveAmount = Math.abs(totalPriceBeforeDiscount - totalDiscountedPrice);
+  const navigate = useNavigate();
+
+  //placeOrder
+  const handlePlaceOrder = () => {
+    setTimeout(() => {
+      navigate("/"); // Redirect to the home page
+    }, 8000);
+  };
+  // ADD
+  const [count, setCount] = useState(1);
+
+  const increment = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const decrement = () => {
+    setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+  };
 
   return (
     <div>
@@ -78,6 +101,24 @@ const Cart = () => {
                       Remove
                     </Button>
                   </div>
+                  <Button
+                    onClick={() => {
+                      increment();
+                      handleAddItems();
+                    }}
+                  >
+                    ADD
+                  </Button>
+                  {count}
+                  <Button
+                    onClick={() => {
+                      decrement();
+                      handleRemoveItems();
+                    }}
+                    disabled={count === 0}
+                  >
+                    Delete
+                  </Button>
                 </div>
               ))}
             </div>
@@ -96,7 +137,10 @@ const Cart = () => {
                     <h4>
                       {" "}
                       ₹
-                      {cartItems.reduce((total, item) => total + item.price, 0)}
+                      {cartItems?.reduce(
+                        (total, item) => total + item?.price,
+                        0
+                      )}
                     </h4>
                   </div>
                 </div>
@@ -119,9 +163,19 @@ const Cart = () => {
                     You will save ₹{saveAmount.toFixed(0)} on this order
                   </div>
                 </div>
-                <div className="Buy-btn">
-                  <button className="place-order-btn">PLACE ORDER</button>
-                </div>
+                <Link to={"/placeorder"}>
+                  <div className="Buy-btn">
+                    <button
+                      className="place-order-btn"
+                      onClick={() => {
+                        handlePlaceOrder();
+                        handleClearItems();
+                      }}
+                    >
+                      PLACE ORDER
+                    </button>
+                  </div>
+                </Link>
               </div>
               <div></div>
             </div>

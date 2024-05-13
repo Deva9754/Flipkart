@@ -140,3 +140,9 @@ display: flex;
 .cart-empty-img{
     width: 262px;
 }
+.placeorder-img{
+    display: flex;
+    justify-content: center;
+background-color: #d8efff;
+    height: 500px;
+}
