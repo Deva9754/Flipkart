@@ -3,15 +3,18 @@ import { Link, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import useProductCard from "../../../utils/useProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { addItems } from "../../../utils/CartSlice";
+import { addItems, removeItems } from "../../../utils/CartSlice";
 import NavItems from "../navbar/NavItems";
 import ShimmerContainer from "../shimmer/ShimmerContainer";
 import AddButton from "../../button/AddButton";
+import { Button } from "@mui/material";
+import { useState } from "react";
 
 const ProductCard = () => {
   const { proId } = useParams();
+  const [count, setCount] = useState(1);
 
-  const cartItems = useSelector((store) => store?.cart?.items);
+  // const cartItems = useSelector((store) => store?.cart?.items);
 
   // custom hooks
   const product = useProductCard(proId);
@@ -32,6 +35,9 @@ const ProductCard = () => {
   const dispatch = useDispatch();
   const handleAddItem = (product) => {
     dispatch(addItems(product));
+  };
+  const handleRemoveItem = (product) => {
+    dispatch(removeItems(product));
   };
 
   window.scrollTo(0, 0);

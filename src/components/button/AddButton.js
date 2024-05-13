@@ -59,9 +59,9 @@ const AddButton = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Cancel
-          </Button>
+          {/* <Button autoFocus onClick={handleClose}>
+            ADD More
+          </Button> */}
           <Link to={"/Cart"}>
             <Button autoFocus>Go to cart</Button>
           </Link>
