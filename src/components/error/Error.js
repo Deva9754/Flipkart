@@ -3,7 +3,6 @@ import "./Error.css";
 
 const Error = () => {
   const err = useRouteError();
-  console.log(err);
   return (
     <div className="error-image">
       <div>

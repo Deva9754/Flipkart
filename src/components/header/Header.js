@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
 
@@ -12,9 +12,11 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import checkValidationdata from "../../utils/CheckValidations";
 import useSearchProduct from "../../utils/useSearchProduct";
+import UserContext from "../../utils/UserContext";
+import Body from "../body/Body";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
@@ -23,6 +25,11 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const style = {
     position: "absolute",
@@ -47,17 +54,29 @@ const Header = () => {
   useEffect(() => {
     response();
   }, []);
+  // context
+  // const { loggedInUser } = useContext(UserContext);
+  // const { setUserName } = useContext(UserContext);
 
   //Login
-  const email = useRef();
-  const password = useRef();
-  const [message, setMessage] = useState("hello message");
-  const check = () => {
-    let message = checkValidationdata(
-      email.current.value,
-      password.current.value
-    );
-    setMessage(message);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (username === "admin" && password === "password") {
+      // Successful login
+      setLoggedIn(true);
+      handleClose();
+    } else {
+      // Failed login
+      setError("Invalid username or password");
+    }
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    // Redirect to home
+    navigate("/");
   };
 
   //dispatch store
@@ -75,178 +94,195 @@ const Header = () => {
   const cartItems = useSelector((store) => store?.cart?.items);
 
   return (
-    <div className="Header">
-      <div className="logo">
-        <Link to="/" className="link">
-          <img
-            className="logo-image"
-            src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
-            alt="Logo"
-          />
+    <>
+      <div className="Header">
+        <div className="logo">
+          <Link to="/" className="link">
+            <img
+              className="logo-image"
+              src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+              alt="Logo"
+            />
 
-          <div className="explore-logo">
-            <div className="explore">Explore</div>
-            <div className="img-plus">
-              <img
-                className="plus-image"
-                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
-              />
-              <div className="plus">Plus</div>
-            </div>
-          </div>
-        </Link>
-      </div>
-
-      <div className="Search">
-        <input
-          className="search-bar"
-          type="text"
-          placeholder="Search for Products,brands and more"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <Link to={"/SearchProduct/" + searchText}>
-          <button type="submit" className="Search-submit" onClick={handleClick}>
-            Search
-          </button>
-        </Link>
-      </div>
-      <div className="nav-items">
-        <ul className="nav-items-Bar">
-          <Link to={"/"}>
-            <button className="btn">
-              <i className="fa-solid fa-house"></i>Home
-            </button>
-          </Link>
-
-          <button className="btn" onClick={handleOpen}>
-            <i className="fa-solid fa-right-to-bracket"></i> Login
-          </button>
-
-          <Link to={"/Cart"}>
-            <button className="btn">
-              <i className="fa-solid fa-cart-shopping"></i>Cart
-              {cartItems.length}
-            </button>
-          </Link>
-          <Link to={"/becomeseller"}>
-            <button className="btn">
-              <i className="fa-solid fa-store"></i>Become a Seller
-            </button>
-          </Link>
-        </ul>
-      </div>
-      <div>
-        {/* <Button onClick={handleOpen}>Login</Button> */}
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          slots={{ backdrop: Backdrop }}
-          slotProps={{
-            backdrop: {
-              timeout: 500,
-            },
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={style}>
-              <Typography
-                sx={{
-                  backgroundColor: "#2874f0",
-                  height: 528,
-                  width: 336,
-                  p: 3,
-                  bottom: 0,
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontFamily: 500,
-                    fontSize: "32px",
-                    color: "white",
-                  }}
-                >
-                  Login
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "18px",
-                    lineHeight: "150%",
-                    color: "#dfdfdf",
-                  }}
-                >
-                  Get access to your Orders,<br></br> Wishlist and
-                  Recommendations
-                </Typography>
-                <Typography sx={{ pt: 16 }}>
-                  <img
-                    src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png"
-                    alt=""
-                  />
-                </Typography>
-              </Typography>
-
-              {/* input */}
-              <Typography
-                id="transition-modal-description"
-                sx={{
-                  mt: 2,
-                  display: "flex",
-                  p: 2,
-                  flexDirection: "column",
-                }}
-              >
-                <TextField
-                  id="standard-basic"
-                  label="Enter email"
-                  variant="standard"
-                  ref={email}
+            <div className="explore-logo">
+              <div className="explore">Explore</div>
+              <div className="img-plus">
+                <img
+                  className="plus-image"
+                  src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
                 />
-                <TextField
-                  id="standard-basic"
-                  label="Enter Password"
-                  type="password"
-                  variant="standard"
-                  ref={password}
-                />{" "}
-                <Typography sx={{ fontSize: "12px", mt: 2 }}>
-                  By continuing, you agree to Flipkart's Terms of Use and
-                  Privacy Policy.
-                </Typography>
-                <Typography sx={{ mt: 2 }}>
-                  <Button
-                    onClick={check}
-                    sx={{
-                      backgroundColor: "#fb641b",
-                      boxShadow: "0 1px 2px 0 rgba(0, 0, 0, .2)",
-                      border: "none",
-                      paddingLeft: 14,
-                      paddingRight: 14,
+                <div className="plus">Plus</div>
+              </div>
+            </div>
+          </Link>
+        </div>
 
-                      color: "#fff",
+        <div className="Search">
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search for Products,brands and more"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <Link to={"/SearchProduct/" + searchText}>
+            <button
+              type="submit"
+              className="Search-submit"
+              onClick={handleClick}
+            >
+              Search
+            </button>
+          </Link>
+        </div>
+        <div className="nav-items">
+          <div className="nav-items-Bar">
+            <Link to={"/"}>
+              <button className="btn">
+                <i className="fa-solid fa-house"></i>Home
+              </button>
+            </Link>
+
+            {!loggedIn ? (
+              <button className="btn" onClick={handleOpen}>
+                Login
+              </button>
+            ) : (
+              <button className="btn" onClick={handleLogout}>
+                <span>
+                  <i className="fa-solid fa-house" />
+                </span>
+                <span> Logout</span>
+              </button>
+            )}
+
+            <Link to={"/Cart"}>
+              <button className="btn">
+                <i className="fa-solid fa-cart-shopping"></i>Cart
+                {cartItems.length}
+              </button>
+            </Link>
+            <Link to={"/becomeseller"}>
+              <button className="btn">
+                <i className="fa-solid fa-store"></i>Become a Seller
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div>
+          {/* <Button onClick={handleOpen}>Login</Button> */}
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+              backdrop: {
+                timeout: 500,
+              },
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                <Typography
+                  sx={{
+                    backgroundColor: "#2874f0",
+                    height: 528,
+                    width: 336,
+                    p: 3,
+                    bottom: 0,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: 500,
+                      fontSize: "32px",
+                      color: "white",
                     }}
                   >
                     Login
-                  </Button>
-                  <p>{message}</p>
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "18px",
+                      lineHeight: "150%",
+                      color: "#dfdfdf",
+                    }}
+                  >
+                    Get access to your Orders,<br></br> Wishlist and
+                    Recommendations
+                  </Typography>
+                  <Typography sx={{ pt: 16 }}>
+                    <img
+                      src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png"
+                      alt=""
+                    />
+                  </Typography>
                 </Typography>
-                {/* <Typography>{message}</Typography> */}
+
+                {/* input */}
                 <Typography
-                  sx={{ paddingTop: 26, color: "#2874f0", cursor: "pointer" }}
+                  id="transition-modal-description"
+                  sx={{
+                    mt: 2,
+                    display: "flex",
+                    p: 2,
+                    flexDirection: "column",
+                  }}
                 >
-                  New to Flipkart? Create an account
+                  <TextField
+                    id="standard-basic"
+                    label="Enter email"
+                    variant="standard"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <TextField
+                    id="standard-basic"
+                    label="Enter Password"
+                    type="password"
+                    variant="standard"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />{" "}
+                  <Typography sx={{ fontSize: "12px", mt: 2 }}>
+                    By continuing, you agree to Flipkart's Terms of Use and
+                    Privacy Policy.
+                  </Typography>
+                  <Typography sx={{ mt: 2 }}>
+                    <Button
+                      onClick={handleSubmit}
+                      sx={{
+                        backgroundColor: "#fb641b",
+                        boxShadow: "0 1px 2px 0 rgba(0, 0, 0, .2)",
+                        border: "none",
+                        paddingLeft: 14,
+                        paddingRight: 14,
+
+                        color: "#fff",
+                      }}
+                    >
+                      Login
+                    </Button>
+                    <p>{error}</p>
+                  </Typography>
+                  {/* <Typography>{message}</Typography> */}
+                  <Typography
+                    sx={{ paddingTop: 26, color: "#2874f0", cursor: "pointer" }}
+                  >
+                    New to Flipkart? Create an account
+                  </Typography>
                 </Typography>
-              </Typography>
-            </Box>
-          </Fade>
-        </Modal>
+              </Box>
+            </Fade>
+          </Modal>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
