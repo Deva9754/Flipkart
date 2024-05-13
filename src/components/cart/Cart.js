@@ -10,18 +10,22 @@ import BecomeSeller from "../locationcheck/LocationCheck";
 import placeorder from "./PlaceOrder";
 
 const Cart = () => {
+  const [count, setCount] = useState(1);
   // const { loggedInUser } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+
   const dispatch = useDispatch();
+
   const handleClearItems = () => {
     dispatch(clearCart());
   };
   const handleRemoveItems = () => {
+    setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
     dispatch(removeItems());
   };
-  const handleAddItems = () => {
-    dispatch(addItems());
+  const handleAddItems = (items) => {
+    setCount((prevCount) => prevCount + 1);
+    dispatch(addItems(items));
   };
 
   window.scrollTo(0, 0);
@@ -52,15 +56,6 @@ const Cart = () => {
     }, 8000);
   };
   // ADD
-  const [count, setCount] = useState(1);
-
-  const increment = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  const decrement = () => {
-    setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
-  };
 
   return (
     <div>
@@ -97,22 +92,14 @@ const Cart = () => {
                     </span>
                   </div>
                   <div className="cart-remove-btn">
-                    <Button onClick={() => handleRemoveItems(cartItems)}>
+                    <Button onClick={() => handleRemoveItems(items)}>
                       Remove
                     </Button>
                   </div>
-                  <Button
-                    onClick={() => {
-                      increment();
-                      handleAddItems();
-                    }}
-                  >
-                    ADD
-                  </Button>
+                  <Button onClick={() => handleAddItems(items)}>ADD</Button>
                   {count}
                   <Button
                     onClick={() => {
-                      decrement();
                       handleRemoveItems();
                     }}
                     disabled={count === 0}
