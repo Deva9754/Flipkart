@@ -9,6 +9,7 @@ import About from "./components/header/about/About";
 import Header from "./components/header/Header.js";
 import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
+import Placeorder from "./components/cart/PlaceOrder.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import UserContext from "./utils/UserContext.js";
@@ -16,6 +17,7 @@ import { Provider } from "react-redux";
 import appStore from "./utils/Appstore.js";
 import Searchproduct from "./components/SearchProduct/SearchProduct.js";
 import LocationCheck from "./components/locationcheck/LocationCheck";
+import UserContext from "./utils/UserContext.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
 
 const AppLayout = () => {
@@ -32,7 +34,7 @@ const AppLayout = () => {
             <Footer />
           </div>
         </UserContext.Provider>
-      </Provider>
+      </Provider>{" "}
     </>
   );
 };
@@ -73,6 +75,10 @@ const appRoute = createBrowserRouter([
       {
         path: "/LocationCheck",
         element: <LocationCheck />,
+      },
+      {
+        path: "/placeorder",
+        element: <Placeorder />,
       },
     ],
     errorElement: <Error />,
