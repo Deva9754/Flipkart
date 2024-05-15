@@ -11,13 +11,23 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { TextField } from "@mui/material";
+import { Badge, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import checkValidationdata from "../../utils/CheckValidations";
-import useSearchProduct from "../../utils/useSearchProduct";
-import UserContext from "../../utils/UserContext";
-import Body from "../body/Body";
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { styled } from "@mui/material/styles";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Store } from "@mui/icons-material";
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [listOfProduct, setListOfProduct] = useState();
@@ -140,34 +150,40 @@ const Header = () => {
         <div className="nav-items">
           <div className="nav-items-Bar">
             <Link to={"/"}>
-              <button className="btn">
-                <i className="fa-solid fa-house"></i>Home
-              </button>
+              <Button variant="contained" startIcon={<HomeIcon />}>
+                Home
+              </Button>
             </Link>
 
             {!loggedIn ? (
-              <button className="btn" onClick={handleOpen}>
+              <Button
+                variant="contained"
+                onClick={handleOpen}
+                startIcon={<LoginIcon />}
+              >
                 Login
-              </button>
+              </Button>
             ) : (
-              <button className="btn" onClick={handleLogout}>
-                <span>
-                  <i className="fa-solid fa-house" />
-                </span>
+              <Button
+                variant="contained"
+                onClick={handleLogout}
+                startIcon={<LogoutIcon />}
+              >
                 <span> Logout</span>
-              </button>
+              </Button>
             )}
 
             <Link to={"/Cart"}>
-              <button className="btn">
-                <i className="fa-solid fa-cart-shopping"></i>Cart
-                {cartItems.length}
-              </button>
+              <StyledBadge badgeContent={cartItems.length} color="primary">
+                <Button variant="contained" startIcon={<ShoppingCartIcon />}>
+                  Cart
+                </Button>
+              </StyledBadge>
             </Link>
             <Link to={"/becomeseller"}>
-              <button className="btn">
-                <i className="fa-solid fa-store"></i>Become a Seller
-              </button>
+              <Button variant="contained" startIcon={<Store />}>
+                Become a Seller
+              </Button>
             </Link>
           </div>
         </div>
