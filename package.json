@@ -4,7 +4,7 @@
   "description": " Namaste React app",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build",
+    "build": "parcel build src/index.html",
     "test": "jest"
   },
   "repository": {
