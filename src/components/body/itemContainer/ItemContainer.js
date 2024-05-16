@@ -3,8 +3,6 @@ import "./ItemContainer.css";
 import { Shimmer } from "react-shimmer";
 
 const ItemContainer = ({ resData }, props) => {
-  // console.log(resData);
-
   const { id, images, title, price } = resData;
   return (
     <div>
