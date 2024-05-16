@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": " Namaste React app",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "src/index.html",
     "build": "parcel build src/index.html",
     "test": "jest"
   },
