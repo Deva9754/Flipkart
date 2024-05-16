@@ -3,9 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import Body from "./components/body/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Login from "../src/components/header/login/Login";
 import Error from "./components/error/Error";
-import About from "./components/header/about/About";
 import Header from "./components/header/Header.js";
 import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
@@ -15,10 +13,13 @@ import { lazy, Suspense } from "react";
 import UserContext from "./utils/UserContext.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/Appstore.js";
-import Searchproduct from "./components/SearchProduct/SearchProduct.js";
 import LocationCheck from "./components/locationcheck/LocationCheck";
 import UserContext from "./utils/UserContext.js";
+import Searchproduct from "./components/SearchProduct/SearchProduct.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
+const ProductCard = lazy(() =>
+  import("./components/body/Product-card/ProductCard.js")
+);
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
@@ -45,18 +46,10 @@ const appRoute = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/Login",
-        element: <Login />,
-      },
-      {
         path: "/",
         element: <Body />,
       },
 
-      {
-        path: "/about",
-        element: <About />,
-      },
       {
         path: "/Cart",
         element: (
@@ -67,10 +60,15 @@ const appRoute = createBrowserRouter([
       },
       {
         path: "/product-card/:proId",
-        element: <ProductCard />,
+        element: (
+          <Suspense fallback={<h1>Data is loading</h1>}>
+            <ProductCard />,
+          </Suspense>
+        ),
       },
       {
         path: "/SearchProduct/:ProTitle",
+
         element: <Searchproduct />,
       },
       {
