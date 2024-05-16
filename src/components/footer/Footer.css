@@ -32,11 +32,7 @@
 .footer-main{
     background-color: #212121;
     color: white;
-    padding: 24px;
-    margin-top: 24px;
-  left: 0;
-  bottom: 0;
-  /* position: fixed; */
+    
     
 }p{
     color: #878787;
@@ -97,4 +93,33 @@ text-decoration: underline;
 .payment-img{
     width: 392;
     height: 32;
-}
+} 
+
+/* Media query for phones */
+@media screen and (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      gap: 0; 
+      padding: 12px; 
+    }
+  
+    .footer-left,
+    .footer-right {
+      width: 100%; 
+      text-align: center; 
+      display: flex;
+      flex-direction: column; 
+      gap: 24px; 
+    }
+  
+    .divider {
+      display: none; 
+    }
+  
+    .footer-left ul,
+    .footer-right div {
+      list-style-type: none; 
+      padding-left: 0; 
+    }
+  }
+  

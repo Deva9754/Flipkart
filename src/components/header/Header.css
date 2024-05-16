@@ -1,88 +1,23 @@
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+/* Header.css */
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #2874f0;
+  height: 60px;
 }
 
-.Header{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 10px;
-    align-items: center;
-    /* border-bottom: 2px solid grey; */
-    background-color:#2874f0;
-    height: 60px;
-    overflow: hidden;
-}
 .logo-image{
-    width: 45%;
-    cursor: pointer;
+  width: 45%;
+  cursor: pointer;
 
 }.logo{
-    width: 180px;
-    display: flex;
-    flex-direction: column;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
 }
-
-
-.Search{
-    display: flex;
-    background-color: whitesmoke;
-    border-radius: 12px;
-    width: 33%;
-    border: none;
-   
-
-
-}
-.Search-submit{
-  background-color: white;
-    border: none;
-    border-radius: 4px;
-padding: 5px;    color: grey;
-    font-weight: bold;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    cursor: pointer;
-    opacity: 1;
-    text-align: center;
-}
-input:focus{
-  outline: none;
-}
-.search-bar{
-
-    border: none;
-    border-radius: 4px;
-    flex: 1;
-    padding-left: 25px;
-}
-::placeholder {
-    color: grey;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    opacity: 1; /* Firefox */
-    font-weight: 500;
-  }
-  .btn{
-    color: #2874f0;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    color: white;
-    font-size: 18px;
-  text-shadow: 8px 8px 8px #aaa;
-  background-color:#2874f0;
-  cursor: pointer;
-  }
-  .nav-items{
-    width: 40%;
-
-  }
-  .nav-items-Bar{
-    padding-left: 10px;
-    display: flex;
-    justify-content: space-evenly;
-  }
 .explore{
   font-size: 11px;
   font-family: Arial, Helvetica, sans-serif;
@@ -111,4 +46,64 @@ input:focus{
 .plus-image{
   width: 10px;
   height: 11px;
+}
+.Search {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.Search-submit {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #2874f0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-items-Bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* media queries for phones */
+@media screen and (max-width: 768px) {
+  .Header {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .logo {
+  padding-left: 24px;
+  }
+
+  .Search,
+  .nav-items {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .Search-submit {
+    margin-left: 10px;
+  }
+  .nav-items-Bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

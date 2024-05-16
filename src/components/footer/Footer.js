@@ -115,13 +115,6 @@ const Footer = () => {
           Help Center
         </div>
         <div className="footer-bottom-links"> © 2007-2024 Flipkart.com</div>
-        {/* <div>
-          <img
-            src="https://as1.ftcdn.net/v2/jpg/04/07/44/62/1000_F_407446284_KBEUJeBQWXwrPwRB7vh0CdAzT9VmXori.jpg"
-            alt="payment-img"
-            className="payment-img"
-          />
-        </div> */}
       </div>
     </div>
   );

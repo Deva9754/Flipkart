@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 
 import useSearchProduct from "../../utils/useSearchProduct";
 import "./Searchproduct.css";
@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../utils/CartSlice";
 import SearchSkeleton from "./SearchSkeleton";
 import NavItems from "../body/navbar/NavItems";
+import { Slide } from "@mui/material";
 
 const Searchproduct = () => {
   const { ProTitle } = useParams();
@@ -35,7 +36,10 @@ const Searchproduct = () => {
   const cartItems = useSelector((store) => store?.cart?.items);
   // SearchResult.js
   const { loading, searchProduct } = useSearchProduct(ProTitle);
-  console.log(searchProduct?.products);
+
+  const Transition = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   if (loading) {
     return (
@@ -79,13 +83,12 @@ const Searchproduct = () => {
                     {item?.stock}
                     {/* <StarIcon /> */}
                   </span>
+                  <div className="rating">Special Price</div>
+                  <h1> ₹{item?.price}</h1>
+                  <span className="discount">
+                    {item?.discountPercentage}% off
+                  </span>
                 </div>
-
-                <div className="rating">Special Price</div>
-                <h1> ₹{item?.price}</h1>
-                <span className="discount">
-                  {item?.discountPercentage}% off
-                </span>
               </div>
             </div>
             <div className="search-Buy-btn">
@@ -102,10 +105,12 @@ const Searchproduct = () => {
               </div>
             </div>
             <Dialog
-              fullScreen={fullScreen}
               open={open}
               onClose={handleClose}
               aria-labelledby="responsive-dialog-title"
+              maxWidth="xs"
+              TransitionComponent={Transition}
+              keepMounted
             >
               <DialogTitle id="responsive-dialog-title">
                 {"Cart is ready !!"}
@@ -119,8 +124,10 @@ const Searchproduct = () => {
                 <Button autoFocus onClick={handleClose}>
                   Cancel
                 </Button>
-                <Link to={"/Cart"}>
-                  <Button autoFocus>Go to cart</Button>
+                <Link to={"/Cart"} style={{ textDecoration: "none" }}>
+                  <Button autoFocus color="primary">
+                    Go to cart
+                  </Button>
                 </Link>
               </DialogActions>
             </Dialog>

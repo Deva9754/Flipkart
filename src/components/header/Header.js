@@ -1,10 +1,8 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect } from "react";
 import "./Header.css";
 import { Button } from "@mui/base/Button";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../utils/SearchSlice";
-// Login modal
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -19,6 +17,12 @@ import { styled } from "@mui/material/styles";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Store } from "@mui/icons-material";
+//
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+
+import Typography from "@mui/material/Typography";
+import Badge from "@mui/material/Badge";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -31,7 +35,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [listOfProduct, setListOfProduct] = useState();
-  // Login modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -46,13 +49,30 @@ const Header = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 650,
-    Height: 528,
+    width: "90%",
+    maxWidth: 650,
+    height: "auto",
+    maxHeight: "90vh",
     bgcolor: "background.paper",
     boxShadow: 24,
     display: "flex",
+    flexDirection: "row",
   };
-  // const { loggedInUser, setUserName } = useContext(UserContext);
+
+  // Media query for max-width of 768px
+  const mediaQuery = "@media (max-width: 768px)";
+
+  const stylesFor768px = {
+    flexDirection: "column",
+    width: "100%",
+    maxWidth: "100%",
+  };
+
+  const mergedStyle = {
+    ...style,
+    [mediaQuery]: stylesFor768px,
+  };
+
   //Api FETCHED
   const response = async () => {
     const data = await fetch("https://dummyjson.com/product");
@@ -64,11 +84,6 @@ const Header = () => {
   useEffect(() => {
     response();
   }, []);
-  // context
-  // const { loggedInUser } = useContext(UserContext);
-  // const { setUserName } = useContext(UserContext);
-
-  //Login
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -103,6 +118,9 @@ const Header = () => {
   //subscribing store
   const cartItems = useSelector((store) => store?.cart?.items);
 
+  const onChange = (e) => {
+    setSearchText(e.target.value);
+  };
   return (
     <>
       <div className="Header">
@@ -182,13 +200,12 @@ const Header = () => {
             </Link>
             <Link to={"/becomeseller"}>
               <Button variant="contained" startIcon={<Store />}>
-                Become a Seller
+                Seller
               </Button>
             </Link>
           </div>
         </div>
         <div>
-          {/* <Button onClick={handleOpen}>Login</Button> */}
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -203,12 +220,11 @@ const Header = () => {
             }}
           >
             <Fade in={open}>
-              <Box sx={style}>
+              <Box sx={mergedStyle}>
                 <Typography
                   sx={{
                     backgroundColor: "#2874f0",
-                    height: 528,
-                    width: 336,
+
                     p: 3,
                     bottom: 0,
                   }}

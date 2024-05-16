@@ -6,19 +6,22 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../utils/CartSlice";
 import { Link, useParams } from "react-router-dom";
 import useProductCard from "../../utils/useProductCard";
+import "./AddButton.css";
+import { Slide } from "@mui/material";
 const AddButton = () => {
   const { proId } = useParams();
   const product = useProductCard(proId);
 
   // custom Alert
   const [open, setOpen] = useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const Transition = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,10 +48,12 @@ const AddButton = () => {
         ADD TO CART
       </button>
       <Dialog
-        fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
+        maxWidth="xs" // Sets maximum width to 'xs' (extra small)
+        TransitionComponent={Transition}
+        keepMounted
       >
         <DialogTitle id="responsive-dialog-title">
           {"Cart is ready !!"}
@@ -59,11 +64,10 @@ const AddButton = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {/* <Button autoFocus onClick={handleClose}>
-            ADD More
-          </Button> */}
-          <Link to={"/Cart"}>
-            <Button autoFocus>Go to cart</Button>
+          <Link to={"/Cart"} style={{ textDecoration: "none" }}>
+            <Button autoFocus color="primary">
+              Go to cart
+            </Button>
           </Link>
         </DialogActions>
       </Dialog>

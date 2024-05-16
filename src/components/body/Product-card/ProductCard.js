@@ -14,8 +14,6 @@ const ProductCard = () => {
   const { proId } = useParams();
   const [count, setCount] = useState(1);
 
-  // const cartItems = useSelector((store) => store?.cart?.items);
-
   // custom hooks
   const product = useProductCard(proId);
 
@@ -35,9 +33,6 @@ const ProductCard = () => {
   const dispatch = useDispatch();
   const handleAddItem = (product) => {
     dispatch(addItems(product));
-  };
-  const handleRemoveItem = (product) => {
-    dispatch(removeItems(product));
   };
 
   window.scrollTo(0, 0);
@@ -64,25 +59,15 @@ const ProductCard = () => {
               {<StarIcon />}
             </span>
             <span className="rating-box">stock : {stock}</span>
+            <div className="rating">Special Price</div>
+            <h1> ₹{price}</h1>
+            <span className="discount">{discountPercentage}% off</span>
           </div>
-
-          <div className="rating">Special Price</div>
-          <h1> ₹{price}</h1>
-          <span className="discount">{discountPercentage}% off</span>
         </div>
       </div>
 
       <div className="Buy-btn">
         <AddButton />
-        {/* <button
-          className="add-btn"
-          onClick={() => {
-            handleAddItem(product);
-            handleClickOpen();
-          }}
-        >
-          ADD TO CART
-        </button> */}
       </div>
     </>
   );
