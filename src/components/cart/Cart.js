@@ -101,7 +101,7 @@ const Cart = () => {
                       {count}
                       <Button
                         onClick={() => handleRemoveItems()}
-                        disabled={count === 0}
+                        disabled={count == 1}
                       >
                         <Remove />
                       </Button>
