@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client";
-
 import Body from "./components/body/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/error/Error";
@@ -28,14 +27,14 @@ const AppLayout = () => {
   return (
     <>
       <Provider store={appStore}>
-        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-          <div className="app">
-            <Header />
-            <Outlet />
-            <Footer />
-          </div>
-        </UserContext.Provider>
-      </Provider>{" "}
+        {/* <UserContext.Provider value={{ loggedInUser: userName, setUserName }}> */}
+        <div className="app">
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+        {/* </UserContext.Provider> */}
+      </Provider>
     </>
   );
 };
@@ -68,7 +67,6 @@ const appRoute = createBrowserRouter([
       },
       {
         path: "/SearchProduct/:ProTitle",
-
         element: <Searchproduct />,
       },
       {
