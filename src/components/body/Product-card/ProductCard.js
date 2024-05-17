@@ -1,5 +1,5 @@
 import "./ProductCard.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import useProductCard from "../../../utils/useProductCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,15 +7,15 @@ import { addItems, removeItems } from "../../../utils/CartSlice";
 import NavItems from "../navbar/NavItems";
 import ShimmerContainer from "../shimmer/ShimmerContainer";
 import AddButton from "../../button/AddButton";
-import { Button } from "@mui/material";
 import { useState } from "react";
 
 const ProductCard = () => {
   const { proId } = useParams();
   const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+  const product = useProductCard(proId);
 
   // custom hooks
-  const product = useProductCard(proId);
 
   const {
     id,
@@ -30,7 +30,6 @@ const ProductCard = () => {
   } = product;
   if (product.length === 0) return <ShimmerContainer />;
 
-  const dispatch = useDispatch();
   const handleAddItem = (product) => {
     dispatch(addItems(product));
   };
