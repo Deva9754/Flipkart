@@ -36,7 +36,7 @@ const Body = () => {
 
   // Subscribing store
 
-  const SearchItems = useSelector((store) => store?.search?.items);
+  // const SearchItems = useSelector((store) => store?.search?.items);
   return (
     <div className="Body">
       <NavItems />
