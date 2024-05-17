@@ -6,11 +6,10 @@ import ItemContainer from "./itemContainer/ItemContainer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../../utils/useOnline";
-import { useSelector } from "react-redux";
 import NavItems from "./navbar/NavItems";
 import ShimmerContainer from "./shimmer/ShimmerContainer";
 const Body = () => {
-  const [listOfProduct, setListOfProduct] = useState();
+  // const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
   const response = async () => {
     const data = await fetch("https://dummyjson.com/product");

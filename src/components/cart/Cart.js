@@ -1,21 +1,18 @@
-import { useContext, useState } from "react";
-import UserContext from "../../utils/UserContext";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import StarIcon from "@mui/icons-material/Star";
 import { addItems, clearCart, removeItems } from "../../utils/CartSlice";
 import { Button } from "@mui/material";
 import "./Cart.css";
 import { Link, useNavigate } from "react-router-dom";
-import BecomeSeller from "../locationcheck/LocationCheck";
 import AddIcon from "@mui/icons-material/Add";
 import { Remove } from "@mui/icons-material";
 
 const Cart = () => {
   window.scrollTo(0, 0);
   const [count, setCount] = useState(1);
-  // const { loggedInUser } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
-
+  const uniqueItemIds = [];
   const dispatch = useDispatch();
 
   const handleClearItems = () => {
@@ -29,8 +26,6 @@ const Cart = () => {
     setCount((prevCount) => prevCount + 1);
     dispatch(addItems(items));
   };
-
-  const uniqueItemIds = [];
 
   // Total amount
   const totalPriceBeforeDiscount = cartItems.reduce(

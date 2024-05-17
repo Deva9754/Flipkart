@@ -7,13 +7,10 @@ import Header from "./components/header/Header.js";
 import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
 import Placeorder from "./components/cart/PlaceOrder.js";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import UserContext from "./utils/UserContext.js";
 import { Provider } from "react-redux";
-import appStore from "./utils/Appstore.js";
+import appStore from "./utils/appstore.js";
 import LocationCheck from "./components/locationcheck/LocationCheck";
-import UserContext from "./utils/UserContext.js";
 import Searchproduct from "./components/SearchProduct/SearchProduct.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
 const ProductCard = lazy(() =>
@@ -21,19 +18,16 @@ const ProductCard = lazy(() =>
 );
 
 const AppLayout = () => {
-  const [userName, setUserName] = useState();
   window.scrollTo(0, 0);
 
   return (
     <>
       <Provider store={appStore}>
-        {/* <UserContext.Provider value={{ loggedInUser: userName, setUserName }}> */}
         <div className="app">
           <Header />
           <Outlet />
           <Footer />
         </div>
-        {/* </UserContext.Provider> */}
       </Provider>
     </>
   );

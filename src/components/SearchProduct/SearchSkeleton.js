@@ -6,7 +6,7 @@ const SearchSkeleton = () => {
   return (
     <div className="skeleton-box">
       {skeletonBox.map((index) => (
-        <Box sx={{ p: 2 }} key={index}>
+        <Box sx={{ p: 2 }} key={index?.id}>
           <Skeleton variant="rectangular" height={118} />
 
           <Skeleton variant="text" width={110} />

@@ -18,8 +18,10 @@ const useSearchProduct = (proTitle) => {
     }
   };
   useEffect(() => {
-    setLoading(true);
-    searchApi();
+    if (proTitle) {
+      setLoading(true);
+      searchApi();
+    }
   }, [proTitle]);
 
   return { loading, searchProduct };

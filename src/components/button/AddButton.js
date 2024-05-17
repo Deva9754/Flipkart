@@ -16,9 +16,12 @@ import { Slide } from "@mui/material";
 const AddButton = () => {
   const { proId } = useParams();
   const product = useProductCard(proId);
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
+  const cartItems = useSelector((store) => store?.cart?.items);
 
   // custom Alert
-  const [open, setOpen] = useState(false);
   const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
@@ -30,12 +33,10 @@ const AddButton = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const dispatch = useDispatch();
   const handleAddItem = (product) => {
     dispatch(addItems(product));
   };
 
-  const cartItems = useSelector((store) => store?.cart?.items);
   return (
     <div>
       <button

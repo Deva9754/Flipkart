@@ -5,10 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import { forwardRef, useState } from "react";
-
 import useSearchProduct from "../../utils/useSearchProduct";
 import "./Searchproduct.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,12 +15,11 @@ import NavItems from "../body/navbar/NavItems";
 import { Slide } from "@mui/material";
 
 const Searchproduct = () => {
-  const { ProTitle } = useParams();
+  const [open, setOpen] = useState(false);
+  const params = useParams();
+  const dispatch = useDispatch();
 
   //custom alert
-  const [open, setOpen] = useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,21 +31,15 @@ const Searchproduct = () => {
 
   const cartItems = useSelector((store) => store?.cart?.items);
   // SearchResult.js
-  const { loading, searchProduct } = useSearchProduct(ProTitle);
+  const { loading, searchProduct } = useSearchProduct(params?.ProTitle);
 
   const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
   if (loading) {
-    return (
-      <div>
-        <SearchSkeleton />
-      </div>
-    );
+    return <SearchSkeleton />;
   }
-
-  const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
     dispatch(addItems(item));

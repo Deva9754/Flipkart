@@ -17,10 +17,8 @@ import { styled } from "@mui/material/styles";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Store } from "@mui/icons-material";
-//
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 
@@ -43,6 +41,8 @@ const Header = () => {
   const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store?.cart?.items);
 
   const style = {
     position: "absolute",
@@ -104,8 +104,6 @@ const Header = () => {
     navigate("/");
   };
 
-  //dispatch store
-  const dispatch = useDispatch();
   const handleClick = () => {
     const filtered = listOfProduct.filter((product) =>
       product.title.toLowerCase().includes(searchText.toLowerCase())
@@ -115,12 +113,6 @@ const Header = () => {
     console.log(filtered);
   };
 
-  //subscribing store
-  const cartItems = useSelector((store) => store?.cart?.items);
-
-  const onChange = (e) => {
-    setSearchText(e.target.value);
-  };
   return (
     <>
       <div className="Header">
