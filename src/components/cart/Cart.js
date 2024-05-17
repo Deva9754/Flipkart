@@ -14,6 +14,7 @@ const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const uniqueItemIds = [];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClearItems = () => {
     dispatch(clearCart());
@@ -44,7 +45,6 @@ const Cart = () => {
     0
   );
   const saveAmount = Math.abs(totalPriceBeforeDiscount - totalDiscountedPrice);
-  const navigate = useNavigate();
 
   //placeOrder
   const handlePlaceOrder = () => {

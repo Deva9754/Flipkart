@@ -213,7 +213,7 @@ const Header = () => {
           >
             <Fade in={open}>
               <Box sx={mergedStyle}>
-                <Typography
+                <Box
                   sx={{
                     backgroundColor: "#2874f0",
 
@@ -240,16 +240,16 @@ const Header = () => {
                     Get access to your Orders,<br></br> Wishlist and
                     Recommendations
                   </Typography>
-                  <Typography sx={{ pt: 16 }}>
+                  <Box sx={{ pt: 16 }}>
                     <img
                       src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png"
                       alt=""
                     />
-                  </Typography>
-                </Typography>
+                  </Box>
+                </Box>
 
                 {/* input */}
-                <Typography
+                <Box
                   id="transition-modal-description"
                   sx={{
                     mt: 2,
@@ -277,7 +277,7 @@ const Header = () => {
                     By continuing, you agree to Flipkart's Terms of Use and
                     Privacy Policy.
                   </Typography>
-                  <Typography sx={{ mt: 2 }}>
+                  <Box sx={{ mt: 2 }}>
                     <Button
                       onClick={handleSubmit}
                       sx={{
@@ -293,14 +293,14 @@ const Header = () => {
                       Login
                     </Button>
                     <p>{error}</p>
-                  </Typography>
+                  </Box>
                   {/* <Typography>{message}</Typography> */}
                   <Typography
                     sx={{ paddingTop: 26, color: "#2874f0", cursor: "pointer" }}
                   >
                     New to Flipkart? Create an account
                   </Typography>
-                </Typography>
+                </Box>
               </Box>
             </Fade>
           </Modal>

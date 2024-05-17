@@ -11,10 +11,10 @@ import ShimmerContainer from "./shimmer/ShimmerContainer";
 const Body = () => {
   // const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
+  const onlineStatus = useOnline();
   const response = async () => {
     const data = await fetch("https://dummyjson.com/product");
     const result = await data.json();
-    setListOfProduct(result.products);
     setFilteredData(result.products);
     // console.log(result);
   };
@@ -25,7 +25,6 @@ const Body = () => {
 
   // check whether page is online/offline
 
-  const onlineStatus = useOnline();
   if (onlineStatus === false)
     return (
       <div className="offline">

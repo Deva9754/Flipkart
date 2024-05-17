@@ -93,6 +93,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "./LocationCheck.css";
 import CancelIcon from "@mui/icons-material/Cancel";
+
 const LocationCheck = () => {
   const [pincode, setPincode] = useState("");
   const [city, setCity] = useState("");
@@ -101,7 +102,6 @@ const LocationCheck = () => {
   const handleOpen = () => setOpen((prev) => !prev);
   const handleClose = () => {
     setOpen((prev) => !prev);
-    // setPincode("");
   };
   const style = {
     position: "absolute",
@@ -123,7 +123,6 @@ const LocationCheck = () => {
 
     if (data[0].Status === "Success") {
       setCity(data[0].PostOffice[0].District);
-      console.log();
       setPincode(data[0].PostOffice[0].Pincode);
     } else {
       setCity("");

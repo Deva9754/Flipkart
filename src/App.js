@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import Body from "./components/body/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";

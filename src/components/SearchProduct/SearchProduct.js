@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { forwardRef, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import useSearchProduct from "../../utils/useSearchProduct";
 import "./Searchproduct.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,8 +50,8 @@ const Searchproduct = () => {
       <NavItems />
       {searchProduct?.products?.length &&
         searchProduct?.products?.map((item) => (
-          <>
-            <div className="Search-box" key={item?.id}>
+          <React.Fragment key={item?.id}>
+            <div className="Search-box">
               <div className="product-img">
                 <img
                   className="image"
@@ -121,7 +121,7 @@ const Searchproduct = () => {
                 </Link>
               </DialogActions>
             </Dialog>
-          </>
+          </React.Fragment>
         ))}
     </div>
   );
