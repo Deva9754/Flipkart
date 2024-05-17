@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import React, { forwardRef, useState } from "react";
 import useSearchProduct from "../../utils/useSearchProduct";
-import "./Searchproduct.css";
+import "./SearchProduct.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../utils/CartSlice";
 import SearchSkeleton from "./SearchSkeleton";
