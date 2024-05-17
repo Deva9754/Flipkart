@@ -9,7 +9,7 @@ import Footer from "./components/footer/Footer.js";
 import Placeorder from "./components/cart/PlaceOrder.js";
 import { lazy, Suspense } from "react";
 import { Provider } from "react-redux";
-import appStore from "./utils/appstore.js";
+import appStore from "./utils/appStore.js";
 import LocationCheck from "./components/locationcheck/LocationCheck";
 import Searchproduct from "./components/SearchProduct/SearchProduct.js";
 const Cart = lazy(() => import("./components/cart/Cart.js"));
