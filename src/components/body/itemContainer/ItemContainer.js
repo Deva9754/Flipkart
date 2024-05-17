@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import "./ItemContainer.css";
-import { Shimmer } from "react-shimmer";
 
 const ItemContainer = ({ resData }, props) => {
   const { id, images, title, price } = resData;
