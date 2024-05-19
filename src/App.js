@@ -1,18 +1,17 @@
-import React, { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Body from "./components/body/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/error/Error";
 import Header from "./components/header/Header.js";
-import ProductCard from "./components/body/Product-card/ProductCard.js";
 import Footer from "./components/footer/Footer.js";
 import Placeorder from "./components/cart/PlaceOrder.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
 import LocationCheck from "./components/locationcheck/LocationCheck";
 import Searchproduct from "./components/SearchProduct/SearchProduct.js";
-const LazyCart = React.lazy(() => import("./components/cart/Cart.js"));
-const LazyProductCard = React.lazy(() =>
+const Cart = lazy(() => import("./components/cart/Cart.js"));
+const ProductCard = lazy(() =>
   import("./components/body/Product-card/ProductCard.js")
 );
 
@@ -46,7 +45,7 @@ const appRoute = createBrowserRouter([
         path: "/Cart",
         element: (
           <Suspense fallback={<h1>Data is loading</h1>}>
-            <LazyCart />
+            <Cart />
           </Suspense>
         ),
       },
@@ -54,7 +53,7 @@ const appRoute = createBrowserRouter([
         path: "/product-card/:proId",
         element: (
           <Suspense fallback={<h1>Data is loading</h1>}>
-            <LazyProductCard />,
+            <ProductCard />,
           </Suspense>
         ),
       },
