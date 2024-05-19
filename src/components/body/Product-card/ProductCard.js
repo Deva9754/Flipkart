@@ -30,10 +30,6 @@ const ProductCard = () => {
   } = product;
   if (product.length === 0) return <ShimmerContainer />;
 
-  // const handleAddItem = (product) => {
-  //   dispatch(addItems(product));
-  // };
-
   window.scrollTo(0, 0);
 
   return (
