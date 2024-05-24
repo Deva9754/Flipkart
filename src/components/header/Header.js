@@ -36,8 +36,8 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("admin");
+  const [password, setPassword] = useState("password");
   const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
