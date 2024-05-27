@@ -52,7 +52,6 @@ const Cart = () => {
       navigate("/"); // Redirect to the home page
     }, 8000);
   };
-  // ADD
 
   return (
     <div>
