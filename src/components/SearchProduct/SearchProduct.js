@@ -67,11 +67,11 @@ const Searchproduct = () => {
 
                   <span className="rating-box">
                     {item?.rating}
-                    {/* <StarIcon /> */}
+                    <StarIcon />
                   </span>
                   <span className="stock-box">
                     {item?.stock}
-                    {/* <StarIcon /> */}
+                    <StarIcon />
                   </span>
                   <div className="rating">Special Price</div>
                   <h1> ₹{item?.price}</h1>
