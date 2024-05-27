@@ -150,7 +150,6 @@ const LocationCheck = () => {
         >
           <Box sx={style}>
             <div className="pincode">
-              {/* <div className="">Use pincode to check the delivery:</div> */}
               <div className="pincode-input">
                 <TextField
                   label="Check your city"
