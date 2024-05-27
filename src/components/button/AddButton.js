@@ -52,7 +52,7 @@ const AddButton = () => {
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
-        maxWidth="xs" // Sets maximum width to 'xs' (extra small)
+        maxWidth="xs"
         TransitionComponent={Transition}
         keepMounted
       >
