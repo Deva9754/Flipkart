@@ -9,10 +9,10 @@ const SearchSkeleton = () => {
         <Box key={index} sx={{ p: 2 }}>
           <Skeleton variant="rectangular" height={118} />
 
-          <Skeleton variant="text" width={110} />
+          {/* <Skeleton variant="text" width={110} />
           <Skeleton variant="text" width={180} />
 
-          <Skeleton variant="text" width={200} />
+          <Skeleton variant="text" width={200} /> */}
         </Box>
       ))}
     </div>
