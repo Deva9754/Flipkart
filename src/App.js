@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Body from "./components/body/Body";
+import Body from "./components/body/Body.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Error from "./components/error/Error";
 import Header from "./components/header/Header.js";
 import Footer from "./components/footer/Footer.js";
 import Placeorder from "./components/cart/PlaceOrder.js";
 import { Provider } from "react-redux";
+import Error from "./components/error/Error.js";
 import appStore from "./utils/appStore.js";
 import LocationCheck from "./components/locationcheck/LocationCheck";
 import Searchproduct from "./components/SearchProduct/SearchProduct.js";
