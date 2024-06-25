@@ -21,8 +21,6 @@ const Body = () => {
     response();
   }, []);
 
-  // check whether page is online/offline
-
   if (onlineStatus === false)
     return (
       <div className="offline">
