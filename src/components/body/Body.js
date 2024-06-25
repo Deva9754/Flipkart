@@ -9,14 +9,12 @@ import useOnline from "../../utils/useOnline";
 import NavItems from "./navbar/NavItems";
 import ShimmerContainer from "./shimmer/ShimmerContainer";
 const Body = () => {
-  // const [listOfProduct, setListOfProduct] = useState();
   const [filteredData, setFilteredData] = useState();
   const onlineStatus = useOnline();
   const response = async () => {
     const data = await fetch("https://dummyjson.com/product");
     const result = await data.json();
     setFilteredData(result.products);
-    // console.log(result);
   };
 
   useEffect(() => {
